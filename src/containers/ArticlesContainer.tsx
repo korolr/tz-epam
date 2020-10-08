@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react"
 import { connect } from "react-redux"
+import { Dispatch } from "redux"
 import { Articles } from "../components/Articles"
-import { ThunkDispatch } from "redux-thunk"
 
 import {
   clearArticles,
@@ -44,9 +44,7 @@ const mapStateToProps = (store: rootState) => {
   }
 }
 
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<rootState, void, articlesAction>
-) => {
+const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   return {
     toClearArticles: () => dispatch(clearArticles()),
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
