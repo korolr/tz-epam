@@ -12,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware()
 
 const persistConfig = {
   key: "root",
+  blacklist: ["articles"],
   debug: !(process.env.NODE_ENV === "production"),
   storage,
 }

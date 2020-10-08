@@ -1,18 +1,32 @@
+import { take, call, put } from "redux-saga/effects"
 import {
-  clearArticles,
-  ARTICLES_FETCH
+  requestArticles,
+  failArticles,
+  ARTICLES_FETCH,
+  successArticles,
 } from "../actions/articlesActions"
-import { take, call, put, select } from "redux-saga/effects"
+import { Article } from "../reducers/articles"
+import { fakeRequest } from "../api"
 
 export function* watchFetchArticles() {
   while (true) {
-    yield take(ARTICLES_FETCH)
-    yield call(() => {})
-    yield select(() => {})
+    const action: ARTICLES_FETCH = yield take(ARTICLES_FETCH)
+    const number = action.payload
+
     try {
-      yield put(clearArticles())
+      yield put(requestArticles())
+      const articles: Array<Article> = yield call(() => {
+        return fakeRequest(number).then((response) => {
+          return response
+        })
+      })
+      if (articles.length) {
+        yield put(successArticles(articles))
+      } else {
+        yield put(failArticles("Пустое тело ответа"))
+      }
     } catch (error) {
-      yield put(clearArticles())
+      yield put(failArticles("Ошибка сервера"))
     }
   }
 }
