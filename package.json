@@ -4,7 +4,7 @@
   "description": "blog",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --env production",
     "start:dev": "node_modules/.bin/webpack-dev-server",
     "precommit": "lint-staged",
     "prettier:base": "prettier --parser typescript --single-quote",

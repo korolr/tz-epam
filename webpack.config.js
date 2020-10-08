@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = (env, argv) => {
-  const mode = argv.mode || "development"
+  const mode = env || "development"
 
   const config = {
     mode: mode,
@@ -14,6 +14,9 @@ module.exports = (env, argv) => {
     target: "web",
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
+    },
+    optimization: {
+      minimize: mode !== "development",
     },
     module: {
       rules: [
