@@ -5,15 +5,14 @@ import { clearArticles, articlesAction } from "../actions/articlesActions"
 import { ThunkDispatch } from "redux-thunk"
 
 import { rootState } from "../reducers"
+import { getVisibleArticles } from "../selectors/articles"
 
 interface Props {
   toClearArticles: () => void
   articles: any[]
 }
 
-const ArticlesContainer: FunctionComponent<Props> = ({
-  toClearArticles,
-}) => {
+const ArticlesContainer: FunctionComponent<Props> = ({ toClearArticles }) => {
   return (
     <div>
       <Articles clearArticles={toClearArticles} />
@@ -23,7 +22,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
 
 const mapStateToProps = (store: rootState) => {
   return {
-    articles: store.articles.data,
+    articles: getVisibleArticles(store),
   }
 }
 
