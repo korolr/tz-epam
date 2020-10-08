@@ -1,6 +1,5 @@
 import storage from "redux-persist/lib/storage"
 import createSagaMiddleware from "redux-saga"
-import thunk from "redux-thunk"
 import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension" // eslint-disable-line
 import { persistStore, persistReducer } from "redux-persist"
@@ -19,8 +18,8 @@ const persistConfig = {
 
 const middleware =
   process.env.NODE_ENV === "production"
-    ? applyMiddleware(thunk, sagaMiddleware)
-    : composeWithDevTools(applyMiddleware(thunk, sagaMiddleware))
+    ? applyMiddleware(sagaMiddleware)
+    : composeWithDevTools(applyMiddleware(sagaMiddleware))
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
