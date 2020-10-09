@@ -4,35 +4,30 @@ import { Dispatch } from "redux"
 
 import { articlesAction, fetchArticles } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
+import { getVisibleArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
-import { Articles } from "../components/Articles"
-import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+import { Header } from "../components/Header"
+import React from "react"
 
 interface Props {
   toFetchArticles: (number?: number) => void
   articles: Array<Article>
-  status: string | null
 }
 
-const ArticlesContainer: FunctionComponent<Props> = ({
+const HeaderContainer: FunctionComponent<Props> = ({
   articles,
   toFetchArticles,
-  status,
 }) => {
-  return ArticlesWrapper(Articles, Error, {
-    articles: articles,
-    status: status,
-    fetchArticles: toFetchArticles,
-    id: 1,
-  })
+  return (
+    <div>
+      <Header articles={articles} fetchArticles={toFetchArticles} />
+    </div>
+  )
 }
 
 const mapStateToProps = (store: rootState) => {
   return {
     articles: getVisibleArticles(store),
-    status: getStatusArticles(store),
   }
 }
 
@@ -42,4 +37,4 @@ const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticlesContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)

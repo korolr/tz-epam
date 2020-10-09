@@ -10,7 +10,7 @@ import {
 import { rootState } from "../reducers"
 import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
-import { Pagination } from "../components/Pagination"
+import { Articles } from "../components/Articles"
 import { Error } from "../components/Error"
 import { ArticlesWrapper } from "../components/ArticlesHOC"
 
@@ -28,7 +28,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
   const [, params] = useRoute("/pag/:id")
 
   return ArticlesWrapper(
-    Pagination,
+    Articles,
     Error,
     {
       articles: articles,
