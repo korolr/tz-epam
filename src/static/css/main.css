@@ -51,3 +51,39 @@ body {
 .paginator-active {
   border-color: blue !important;
 }
+
+.header {
+  background-color: #08e8de;
+  height: 50px !important;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.header-searchText {
+  font-size: 10pt;
+  font-weight: bold;
+  height: 41px;
+  width: 170px;
+}
+
+.header-name p {
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 28pt;
+  text-align: center;
+}
+
+.header-searchDate-input {
+  font-size: 10pt;
+  font-weight: bold;
+
+  height: 41px;
+  width: 170px;
+}
+
+.header-searchDate-button {
+  align-self: center;
+  flex-wrap: nowrap;
+  width: 47px;
+  height: 47px;
+}

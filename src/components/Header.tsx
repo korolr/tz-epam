@@ -8,10 +8,22 @@ export interface Props {
 
 export const Header: FunctionComponent<Props> = (props) => {
   return (
-    <div className="container article">
-      <div className="row">
-        <div className="col-xs-12">
-          <h1>{props.children}</h1>
+    <div className="container">
+      <div className="row header">
+        <div className="col-xs-4">
+          <input type="text" name="Search" className="header-searchText" />
+        </div>
+        <div className="col-xs-4 header-name">
+          <p>Blog</p>
+        </div>
+        <div className="col-xs-1"></div>
+        <div className="col-xs-3 header-searchDate">
+          <input
+            type="text"
+            name="Search"
+            className="header-searchDate-input"
+          />
+          <button className="header-searchDate-button">Date</button>
         </div>
       </div>
     </div>

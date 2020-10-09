@@ -14,8 +14,8 @@ export const Paginator: FunctionComponent<Props> = ({ status }) => {
         </Link>
         {[1, 2, 3].map((a) => {
           return (
-            <Link href={"/pag/" + a}>
-              <button className={status === a && "paginator-active"} key={a}>
+            <Link href={"/pag/" + a} key={a}>
+              <button className={status === a ? "paginator-active" : ""}>
                 {a}
               </button>
             </Link>
