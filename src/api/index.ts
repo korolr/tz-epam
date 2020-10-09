@@ -121,6 +121,6 @@ const arrayArticles: Array<Article> = [
   },
 ]
 
-export const getArticles = (number: number): Array<Article> => {
+export const getArticles = (number?: number): Array<Article> => {
   return arrayArticles
 }

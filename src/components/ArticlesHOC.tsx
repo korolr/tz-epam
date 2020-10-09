@@ -5,18 +5,18 @@ import { Props } from "./Articles"
 export const ArticlesWrapper = (
   WrappedComponent: FunctionComponent<Props>,
   ErrorComponent: FunctionComponent,
-  id: number,
-
-  props: Props
+  props: Props,
+  id?: number
 ) => {
-  const { articles, error, fetchArticles } = props
+  const { articles, status, fetchArticles } = props
 
   useEffect(() => {
-    !articles.length && fetchArticles(id) // if empty array get from api
-  })
+    id !== undefined ? fetchArticles(id) : !articles.length && fetchArticles() // if not array get from api
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
-  if (error) {
-    return <ErrorComponent>{error}</ErrorComponent>
+  if (status) {
+    return <ErrorComponent>{status}</ErrorComponent>
   } else if (!articles.length) {
     return <ErrorComponent>Нет статей</ErrorComponent>
   }

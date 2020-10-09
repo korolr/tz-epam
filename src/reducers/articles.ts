@@ -20,12 +20,12 @@ export type Article = {
 export interface StoreStateArticles {
   data: Array<Article>
   last?: number
-  error: string | null
+  status: string | null
 }
 
 const initialState: StoreStateArticles = {
   data: [],
-  error: null,
+  status: "Loading",
 }
 
 export function articlesReducer(
@@ -34,19 +34,20 @@ export function articlesReducer(
 ): StoreStateArticles {
   switch (action.type) {
     case ARTICLES_REQUEST:
-      return { data: [], error: null }
+      return { data: [], status: "Loading" }
     case ARTICLES_SUCCESS:
       return {
         ...state,
-        error: null,
+        status: null,
         data: action.payload,
       }
     case ARTICLES_FAIL:
-      return { ...state, error: action.payload }
+      return { ...state, status: action.payload }
     case ARTICLES_CLEAR:
       return {
         ...state,
         data: [],
+        status: null,
       }
     default:
       return state

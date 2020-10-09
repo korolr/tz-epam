@@ -1,36 +1,29 @@
-import React, { FunctionComponent, ReactElement } from "react"
+import { FunctionComponent } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import {
-  clearArticles,
-  articlesAction,
-  fetchArticles,
-} from "../actions/articlesActions"
+import { articlesAction, fetchArticles } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles, getErrorArticles } from "../selectors/articles"
+import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Articles } from "../components/Articles"
 import { Error } from "../components/Error"
 import { ArticlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
-  toClearArticles: () => void
-  toFetchArticles: (number: number) => void
+  toFetchArticles: (number?: number) => void
   articles: Array<Article>
-  error: string | null
+  status: string | null
 }
 
 const ArticlesContainer: FunctionComponent<Props> = ({
-  toClearArticles,
   articles,
   toFetchArticles,
-  error,
+  status,
 }) => {
-  return ArticlesWrapper(Articles, Error, 10, {
+  return ArticlesWrapper(Articles, Error, {
     articles: articles,
-    error: error,
-    clearArticles: toClearArticles,
+    status: status,
     fetchArticles: toFetchArticles,
   })
 }
@@ -38,13 +31,12 @@ const ArticlesContainer: FunctionComponent<Props> = ({
 const mapStateToProps = (store: rootState) => {
   return {
     articles: getVisibleArticles(store),
-    error: getErrorArticles(store),
+    status: getStatusArticles(store),
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   return {
-    toClearArticles: () => dispatch(clearArticles()),
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
   }
 }

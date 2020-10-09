@@ -1,53 +1,54 @@
-import React, { FunctionComponent } from "react"
+import { FunctionComponent } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
-import { Articles } from "../components/Articles"
+import { useRoute } from "wouter"
 
 import {
-  clearArticles,
   articlesAction,
-  fetchArticles,
+  fetchFakePagArticles,
 } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles, getErrorArticles } from "../selectors/articles"
+import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
+import { Pagination } from "../components/Pagination"
+import { Error } from "../components/Error"
+import { ArticlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
-  toClearArticles: () => void
-  toFetchArticles: (number: number) => void
+  toFetchArticles: (number?: number) => void
   articles: Array<Article>
-  error: string | null
+  status: string | null
 }
 
 const ArticlesContainer: FunctionComponent<Props> = ({
-  toClearArticles,
   articles,
   toFetchArticles,
-  error,
+  status,
 }) => {
-  return (
-    <div>
-      <Articles
-        articles={articles}
-        error={error}
-        clearArticles={toClearArticles}
-        fetchArticles={toFetchArticles}
-      />
-    </div>
+  const [, params] = useRoute("/pag/:id")
+
+  return ArticlesWrapper(
+    Pagination,
+    Error,
+    {
+      articles: articles,
+      status: status,
+      fetchArticles: toFetchArticles,
+    },
+    parseInt(params.id)
   )
 }
 
 const mapStateToProps = (store: rootState) => {
   return {
     articles: getVisibleArticles(store),
-    error: getErrorArticles(store),
+    status: getStatusArticles(store),
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   return {
-    toClearArticles: () => dispatch(clearArticles()),
-    toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
+    toFetchArticles: (number: number) => dispatch(fetchFakePagArticles(number)),
   }
 }
 

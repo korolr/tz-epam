@@ -7,7 +7,7 @@ export const getVisibleArticles = createSelector(getArticles, (articles) =>
   articles.data.filter((article) => article.visible)
 )
 
-export const getErrorArticles = createSelector(
+export const getStatusArticles = createSelector(
   getArticles,
-  (articles) => articles.error
+  (articles) => articles.status
 )

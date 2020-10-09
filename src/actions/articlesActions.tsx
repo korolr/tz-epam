@@ -34,9 +34,16 @@ export interface ARTICLES_FETCH extends Action {
   payload: number
 }
 
+export const ARTICLES_FETCH_FAKE = "ARTICLES_FETCH_FAKE"
+
+export interface ARTICLES_FETCH_FAKE extends Action {
+  type: typeof ARTICLES_FETCH_FAKE
+}
+
 export type articlesAction =
   | ARTICLES_CLEAR
   | ARTICLES_FETCH
+  | ARTICLES_FETCH_FAKE
   | ARTICLES_REQUEST
   | ARTICLES_SUCCESS
   | ARTICLES_FAIL
@@ -61,4 +68,8 @@ export function clearArticles(): ARTICLES_CLEAR {
 
 export function fetchArticles(number: number): ARTICLES_FETCH {
   return { type: ARTICLES_FETCH, payload: number }
+}
+
+export function fetchFakePagArticles(number: number): ARTICLES_FETCH_FAKE {
+  return { type: ARTICLES_FETCH_FAKE }
 }

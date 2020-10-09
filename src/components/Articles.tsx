@@ -1,19 +1,14 @@
-import React, { FunctionComponent, useEffect } from "react"
+import React, { FunctionComponent } from "react"
 
 import { Article } from "../reducers/articles"
 
 export interface Props {
-  clearArticles: () => void
   articles: Array<Article>
-  fetchArticles: (number: number) => void
-  error: string | null
+  fetchArticles: (number?: number) => void
+  status: string | null
 }
 
-export const Articles: FunctionComponent<Props> = ({
-  articles,
-  error,
-  fetchArticles,
-}) => {
+export const Articles: FunctionComponent<Props> = ({ articles }) => {
   return (
     <div className="container">
       {articles.map((article) => (
