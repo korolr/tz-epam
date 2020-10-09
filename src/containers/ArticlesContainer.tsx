@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
-import { Articles } from "../components/Articles"
 
 import {
   clearArticles,
@@ -11,6 +10,8 @@ import {
 import { rootState } from "../reducers"
 import { getVisibleArticles, getErrorArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
+import { Articles } from "../components/Articles"
+import { articlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
   toClearArticles: () => void
@@ -19,22 +20,18 @@ interface Props {
   error: string | null
 }
 
-const ArticlesContainer: FunctionComponent<Props> = ({
+const ArticlesContainer = ({
   toClearArticles,
   articles,
   toFetchArticles,
   error,
-}) => {
-  return (
-    <div>
-      <Articles
-        articles={articles}
-        error={error}
-        clearArticles={toClearArticles}
-        fetchArticles={toFetchArticles}
-      />
-    </div>
-  )
+}: Props) => {
+  return articlesWrapper(Articles, {
+    articles: articles,
+    error: error,
+    clearArticles: toClearArticles,
+    fetchArticles: toFetchArticles,
+  })
 }
 
 const mapStateToProps = (store: rootState) => {

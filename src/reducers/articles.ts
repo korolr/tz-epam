@@ -38,6 +38,7 @@ export function articlesReducer(
     case ARTICLES_SUCCESS:
       return {
         ...state,
+        error: null,
         data: action.payload,
       }
     case ARTICLES_FAIL:
