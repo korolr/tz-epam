@@ -34,6 +34,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       articles: articles,
       status: status,
       fetchArticles: toFetchArticles,
+      id: parseInt(params.id),
     },
     parseInt(params.id)
   )

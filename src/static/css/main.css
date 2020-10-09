@@ -32,3 +32,22 @@ body {
   font-weight: bold;
   font-size: 24pt;
 }
+
+.paginator-cell {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.paginator-cell button {
+  background-color: gainsboro;
+  font-weight: bold;
+
+  border-width: 1px;
+  margin-left: 6px;
+  height: 30px;
+}
+
+.paginator-active {
+  border-color: blue !important;
+}
