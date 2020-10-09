@@ -14,14 +14,6 @@ export const Articles: FunctionComponent<Props> = ({
   error,
   fetchArticles,
 }) => {
-  useEffect(() => {
-    !articles.length && fetchArticles(10) // if empty array get from api
-  })
-
-  useEffect(() => {
-    console.log(articles)
-  })
-
   return (
     <div className="container">
       {articles.map((article) => (

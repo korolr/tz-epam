@@ -1,21 +1,24 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 
 import { Props } from "./Articles"
 
-export const articlesWrapper = (
+export const ArticlesWrapper = (
   WrappedComponent: FunctionComponent<Props>,
-  ErrorComponent: FunctionComponent<Props>,
+  ErrorComponent: FunctionComponent,
+  id: number,
+
   props: Props
-): FunctionComponent<Props> => {
-  const cb: FunctionComponent<Props> = () => {
-    const { articles, error } = props
-    if (error) {
-      return <ErrorComponent {...props}>{error}</ErrorComponent>
-    } else if (!articles.length) {
-      return <ErrorComponent {...props}>Нет статей</ErrorComponent>
-    } else {
-      return <WrappedComponent {...props} />
-    }
+) => {
+  const { articles, error, fetchArticles } = props
+
+  useEffect(() => {
+    !articles.length && fetchArticles(id) // if empty array get from api
+  })
+
+  if (error) {
+    return <ErrorComponent>{error}</ErrorComponent>
+  } else if (!articles.length) {
+    return <ErrorComponent>Нет статей</ErrorComponent>
   }
-  return cb
+  return <WrappedComponent {...props} />
 }

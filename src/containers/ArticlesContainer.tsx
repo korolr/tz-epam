@@ -12,7 +12,7 @@ import { getVisibleArticles, getErrorArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Articles } from "../components/Articles"
 import { Error } from "../components/Error"
-import { articlesWrapper } from "../components/ArticlesHOC"
+import { ArticlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
   toClearArticles: () => void
@@ -27,7 +27,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
   toFetchArticles,
   error,
 }) => {
-  return articlesWrapper(Articles, Error, {
+  return ArticlesWrapper(Articles, Error, 10, {
     articles: articles,
     error: error,
     clearArticles: toClearArticles,
