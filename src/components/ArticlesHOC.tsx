@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useEffect } from "react"
+import { Props as PropsA } from "./Articles"
+import { Props as PropsS } from "./SearchText"
 
-import { Props } from "./Articles"
+interface Props extends PropsA, PropsS {}
 
 export const ArticlesWrapper = (
   WrappedComponent: FunctionComponent<Props>,

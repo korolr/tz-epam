@@ -7,7 +7,7 @@ export interface Props {
   articles: Array<Article>
   fetchArticles: (number?: number) => void
   status: string | null
-  id: number
+  id?: number
 }
 
 export const Articles: FunctionComponent<Props> = ({ articles, id }) => {
