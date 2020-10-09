@@ -1,43 +1,21 @@
 import React, { FunctionComponent } from "react"
 
-import { Articles } from "./Articles"
-import { Article } from "../reducers/articles"
-
-interface Props {
-  clearArticles: () => void
-  articles: Array<Article>
-  fetchArticles: (number: number) => void
-  error: string | null
-}
+import { Props } from "./Articles"
 
 export const articlesWrapper = (
   WrappedComponent: FunctionComponent<Props>,
+  ErrorComponent: FunctionComponent<Props>,
   props: Props
-) => {
-  return function () {
+): FunctionComponent<Props> => {
+  const cb: FunctionComponent<Props> = () => {
     const { articles, error } = props
     if (error) {
-      return (
-        <div className="container article">
-          <div className="row">
-            <div className="col-xs-12">
-              <h1>{error}</h1>
-            </div>
-          </div>
-        </div>
-      )
+      return <ErrorComponent {...props}>{error}</ErrorComponent>
     } else if (!articles.length) {
-      return (
-        <div className="container article">
-          <div className="row">
-            <div className="col-xs-12">
-              <h1>Loading Articles</h1>
-            </div>
-          </div>
-        </div>
-      )
+      return <ErrorComponent {...props}>Нет статей</ErrorComponent>
     } else {
       return <WrappedComponent {...props} />
     }
   }
+  return cb
 }

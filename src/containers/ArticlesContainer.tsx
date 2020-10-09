@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, ReactElement } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
@@ -11,6 +11,7 @@ import { rootState } from "../reducers"
 import { getVisibleArticles, getErrorArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Articles } from "../components/Articles"
+import { Error } from "../components/Error"
 import { articlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
@@ -20,13 +21,13 @@ interface Props {
   error: string | null
 }
 
-const ArticlesContainer = ({
+const ArticlesContainer: FunctionComponent<Props> = ({
   toClearArticles,
   articles,
   toFetchArticles,
   error,
-}: Props) => {
-  return articlesWrapper(Articles, {
+}) => {
+  return articlesWrapper(Articles, Error, {
     articles: articles,
     error: error,
     clearArticles: toClearArticles,

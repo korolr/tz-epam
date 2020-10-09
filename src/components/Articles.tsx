@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from "react"
 
 import { Article } from "../reducers/articles"
 
-interface Props {
+export interface Props {
   clearArticles: () => void
   articles: Array<Article>
   fetchArticles: (number: number) => void
