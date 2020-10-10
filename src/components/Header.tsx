@@ -4,17 +4,12 @@ import DatePicker from "react-datepicker"
 
 import { Article } from "../reducers/articles"
 
-export interface Props {
-  articles: Array<Article>
-  fetchArticles: (number?: number) => void
-}
-
 export interface PropsInput {
   value: string
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void
 }
 
-export const Header: FunctionComponent<Props> = (props) => {
+export const Header: FunctionComponent = () => {
   const [searchText, setSearchText] = useState("")
   const [, setLocation] = useLocation()
   const [startDate, setStartDate] = useState<Date>(new Date())
@@ -55,45 +50,48 @@ export const Header: FunctionComponent<Props> = (props) => {
     }
   }
   return (
-    <div className="container">
-      <div className="row header">
-        <div className="col-xs-4">
-          <input
-            type="text"
-            name="Search"
-            className="header-searchText"
-            onChange={(e) => setSearchText(e.target.value)}
-            onKeyPress={keyPressSearchText}
-          />
-        </div>
-        <div className="col-xs-4 header-name">
-          <Link href="/">
-            <p>Blog</p>
-          </Link>
-        </div>
-        <div className="col-xs-1"></div>
-        <div className="col-xs-3 header-searchDate">
-          <input
-            type="text"
-            name="Search"
-            className="header-searchDate-input"
-            value={startDate.toLocaleDateString("ru-RU")}
-            onChange={changeDate}
-            onKeyPress={keyPressSearchDate}
-          />
-          <DatePicker
-            selected={startDate}
-            dateFormat="dd/MM/yyyy"
-            popperPlacement="top-end"
-            // Плохие биндинги воообще невозможно типизировать под кейс с кастомным инпутом
+    <>
+      <div className="container">
+        <div className="row header">
+          <div className="col-xs-4">
+            <input
+              type="text"
+              name="Search"
+              className="header-searchText"
+              onChange={(e) => setSearchText(e.target.value)}
+              onKeyPress={keyPressSearchText}
+            />
+          </div>
+          <div className="col-xs-4 header-name">
+            <Link href="/">
+              <p>Blog</p>
+            </Link>
+          </div>
+          <div className="col-xs-1"></div>
+          <div className="col-xs-3 header-searchDate">
+            <input
+              type="text"
+              name="Search"
+              className="header-searchDate-input"
+              value={startDate.toLocaleDateString("ru-RU")}
+              onChange={changeDate}
+              onKeyPress={keyPressSearchDate}
+            />
+            <DatePicker
+              selected={startDate}
+              dateFormat="dd/MM/yyyy"
+              popperPlacement="top-end"
+              // Плохие биндинги воообще невозможно типизировать под кейс с кастомным инпутом
+              // @ts-ignore TODO Сделать пуллреквест в биндинги*/
+              onChange={(date) => setStartDate(date)}
+              /*
             // @ts-ignore TODO Сделать пуллреквест в биндинги*/
-            onChange={(date) => setStartDate(date)}
-            /*
-            // @ts-ignore TODO Сделать пуллреквест в биндинги*/
-            customInput={<CustomInputRef />}
-          />
+              customInput={<CustomInputRef />}
+            />
+          </div>
         </div>
       </div>
-    </div>
+      <br />
+    </>
   )
 }

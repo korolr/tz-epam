@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react"
 import { Props as PropsA } from "./Articles"
 import { Props as PropsS } from "./SearchText"
+import { Props as PropsP } from "./Page"
 
 interface Props extends PropsA, PropsS {}
 

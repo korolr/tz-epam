@@ -34,6 +34,13 @@ export interface ARTICLES_FETCH extends Action {
   payload: number
 }
 
+export const ARTICLES_VIEWED = "ARTICLES_VIEWED"
+
+export interface ARTICLES_VIEWED extends Action {
+  type: typeof ARTICLES_VIEWED
+  payload: number
+}
+
 export const ARTICLES_FETCH_FAKE = "ARTICLES_FETCH_FAKE"
 
 export interface ARTICLES_FETCH_FAKE extends Action {
@@ -47,6 +54,7 @@ export type articlesAction =
   | ARTICLES_REQUEST
   | ARTICLES_SUCCESS
   | ARTICLES_FAIL
+  | ARTICLES_VIEWED
 
 // ----------------------------------------------------------
 
@@ -68,6 +76,10 @@ export function clearArticles(): ARTICLES_CLEAR {
 
 export function fetchArticles(number: number): ARTICLES_FETCH {
   return { type: ARTICLES_FETCH, payload: number }
+}
+
+export function setArticlesViewed(id: number): ARTICLES_VIEWED {
+  return { type: ARTICLES_VIEWED, payload: id }
 }
 
 export function fetchFakePagArticles(number: number): ARTICLES_FETCH_FAKE {

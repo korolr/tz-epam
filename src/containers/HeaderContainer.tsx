@@ -9,32 +9,20 @@ import { Article } from "../reducers/articles"
 import { Header } from "../components/Header"
 import React from "react"
 
-interface Props {
-  toFetchArticles: (number?: number) => void
-  articles: Array<Article>
-}
-
-const HeaderContainer: FunctionComponent<Props> = ({
-  articles,
-  toFetchArticles,
-}) => {
+const HeaderContainer: FunctionComponent = () => {
   return (
     <div>
-      <Header articles={articles} fetchArticles={toFetchArticles} />
+      <Header />
     </div>
   )
 }
 
 const mapStateToProps = (store: rootState) => {
-  return {
-    articles: getVisibleArticles(store),
-  }
+  return {}
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
-  return {
-    toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer)

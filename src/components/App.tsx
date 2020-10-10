@@ -5,6 +5,8 @@ import ArticlesContainer from "../containers/ArticlesContainer"
 import PaginationContainer from "../containers/PaginationContainer"
 import HeaderContainer from "../containers/HeaderContainer"
 import SearchTextContainer from "../containers/SearchTextContainer"
+import PageContainer from "../containers/PageContainer"
+
 import "../static/css/flexboxgrid2.css"
 import "../static/css/main.css"
 import "react-datepicker/dist/react-datepicker.css"
@@ -17,6 +19,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/" component={ArticlesContainer} />
           <Route path="/pag/:id" component={PaginationContainer} />
+          <Route path="/article/:id" component={PageContainer} />
           <Route path="/search/:text" component={SearchTextContainer} />
           <Route>
             <h1>404, Not Found!</h1>

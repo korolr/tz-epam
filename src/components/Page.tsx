@@ -1,0 +1,55 @@
+import React, { FunctionComponent, useEffect } from "react"
+
+import { Article } from "../reducers/articles"
+
+export interface Props {
+  articles: Array<Article>
+  fetchArticles: (number?: number) => void
+  status?: string | null
+  text?: string
+  id?: number
+  setArticlesViewed?: (id: number) => void
+}
+
+export const Page: FunctionComponent<Props> = ({
+  articles,
+  id,
+  setArticlesViewed,
+}) => {
+  const article = articles.filter((article) => article.id === id)
+
+  useEffect(() => {
+    if (article.length !== 0 && !article[0].viewed) {
+      setArticlesViewed(id)
+    }
+  }, [article, id, setArticlesViewed])
+
+  if (article.length === 0) {
+    return <div className="container">Not Found Article</div>
+  }
+
+  return (
+    <>
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-10">
+            <h2 className="article article-h2">{article[0].title}</h2>
+          </div>
+          <div className="col-xs-2 article-date">{article[0].date}</div>
+        </div>
+        <div className="row">
+          <div className="col-xs-12">
+            <div className="article article-pre">
+              <img
+                src={article[0].image}
+                alt="article_img"
+                className="article article-img-post"
+              />
+              {article[0].text}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}

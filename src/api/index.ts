@@ -29,7 +29,7 @@ const arrayArticles: Array<Article> = [
     image: "https://img.itch.zone/aW1nLzcyNzgyNS5wbmc=/original/ONmXnr.png",
     date: "11.09.2020",
     visible: true,
-    viewed: true,
+    viewed: false,
   },
   {
     id: 2,
@@ -51,7 +51,7 @@ const arrayArticles: Array<Article> = [
     image: "https://img.itch.zone/aW1nLzcyNzgyNS5wbmc=/original/ONmXnr.png",
     date: "15.10.2019",
     visible: true,
-    viewed: true,
+    viewed: false,
   },
   {
     id: 3,
@@ -73,7 +73,7 @@ const arrayArticles: Array<Article> = [
     image: "https://img.itch.zone/aW1nLzcyNzgyNS5wbmc=/original/ONmXnr.png",
     date: "22.11.2023",
     visible: true,
-    viewed: true,
+    viewed: false,
   },
   {
     id: 4,
@@ -95,7 +95,7 @@ const arrayArticles: Array<Article> = [
     image: "https://img.itch.zone/aW1nLzcyNzgyNS5wbmc=/original/ONmXnr.png",
     date: "11.03.2021",
     visible: true,
-    viewed: true,
+    viewed: false,
   },
   {
     id: 5,
@@ -117,7 +117,7 @@ const arrayArticles: Array<Article> = [
     image: "https://img.itch.zone/aW1nLzcyNzgyNS5wbmc=/original/ONmXnr.png",
     date: "12.09.2020",
     visible: true,
-    viewed: true,
+    viewed: false,
   },
 ]
 

@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from "react"
 import Fuse from "fuse.js"
+import { Link } from "wouter"
 
 import { Article } from "../reducers/articles"
 
 export interface Props {
   articles: Array<Article>
   fetchArticles: (number?: number) => void
-  status: string | null
+  status?: string | null
   text?: string
 }
 
@@ -15,12 +16,12 @@ export const SearchText: FunctionComponent<Props> = ({ articles, text }) => {
     keys: ["title", "priview", "text"],
   }
   const fuse = new Fuse(articles, options)
-  console.log(text)
   const searchedAricles = fuse.search(text)
   articles.map((a) => {
     if (a.date === text) {
       searchedAricles.push({ item: a, refIndex: a.id })
     }
+    return a
   })
   if (searchedAricles.length === 0) {
     return (
@@ -32,22 +33,29 @@ export const SearchText: FunctionComponent<Props> = ({ articles, text }) => {
     return (
       <div className="container">
         {searchedAricles.map((article) => (
-          <div className="row article-card" key={article.item.id}>
-            <div className="col-xs-2">
-              <h2 className="article article-h2">{article.item.title}</h2>
-              <img
-                src={article.item.image}
-                alt="article_img"
-                className="article article-img"
-              />
+          <Link href={"/article/" + article.item.id} key={article.item.id}>
+            <div
+              className={article.item.viewed ? "row article-card-gray" : "row"}
+            >
+              <div className="col-xs-2">
+                <h2 className="article article-h2">{article.item.title}</h2>
+
+                <img
+                  src={article.item.image}
+                  alt="article_img"
+                  className="article article-img"
+                />
+              </div>
+              <div className="col-xs-8">
+                <div className="article article-pre">
+                  {article.item.priview}
+                </div>
+              </div>
+              <div className="col-xs-2">
+                <div className="article article-date">{article.item.date}</div>
+              </div>
             </div>
-            <div className="col-xs-8">
-              <div className="article article-pre">{article.item.priview}</div>
-            </div>
-            <div className="col-xs-2">
-              <div className="article article-date">{article.item.date}</div>
-            </div>
-          </div>
+          </Link>
         ))}
       </div>
     )

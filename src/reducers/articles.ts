@@ -3,6 +3,7 @@ import {
   ARTICLES_REQUEST,
   ARTICLES_SUCCESS,
   ARTICLES_FAIL,
+  ARTICLES_VIEWED,
   articlesAction,
 } from "../actions/articlesActions"
 
@@ -48,6 +49,14 @@ export function articlesReducer(
         ...state,
         data: [],
         status: null,
+      }
+    case ARTICLES_VIEWED:
+      console.log("s")
+      return {
+        ...state,
+        data: state.data.map((a) =>
+          a.id === action.payload ? { ...a, viewed: true } : a
+        ),
       }
     default:
       return state
