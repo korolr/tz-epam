@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useState } from "react"
+import React, { FunctionComponent, useState, forwardRef } from "react"
 import { Link, useLocation } from "wouter"
+import DatePicker from "react-datepicker"
 
 import { Article } from "../reducers/articles"
 
@@ -8,13 +9,49 @@ export interface Props {
   fetchArticles: (number?: number) => void
 }
 
+export interface PropsInput {
+  value: string
+  onClick: (e: React.MouseEvent<HTMLInputElement>) => void
+}
+
 export const Header: FunctionComponent<Props> = (props) => {
   const [searchText, setSearchText] = useState("")
   const [, setLocation] = useLocation()
+  const [startDate, setStartDate] = useState<Date>(new Date())
+
+  const CustomInput = (
+    props: PropsInput,
+    ref: React.RefObject<HTMLButtonElement>
+  ) => {
+    return (
+      <button className="header-searchDate-button" onClick={props.onClick}>
+        Date
+      </button>
+    )
+  }
+
+  const changeDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let timestamp = Date.parse(e.target.value)
+
+    if (isNaN(timestamp) === false) {
+      return setStartDate(new Date(e.target.value))
+    }
+  }
+
+  // ref for lib (need ref or class component)
+  const CustomInputRef = forwardRef(CustomInput)
+
   const keyPressSearchText = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setSearchText("")
       setLocation("/search/" + searchText)
+    }
+  }
+
+  const keyPressSearchDate = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      setStartDate(new Date())
+      setLocation("/search/" + startDate.toLocaleDateString("ru-RU"))
     }
   }
   return (
@@ -40,8 +77,21 @@ export const Header: FunctionComponent<Props> = (props) => {
             type="text"
             name="Search"
             className="header-searchDate-input"
+            value={startDate.toLocaleDateString("ru-RU")}
+            onChange={changeDate}
+            onKeyPress={keyPressSearchDate}
           />
-          <button className="header-searchDate-button">Date</button>
+          <DatePicker
+            selected={startDate}
+            dateFormat="dd/MM/yyyy"
+            popperPlacement="top-end"
+            // Плохие биндинги воообще невозможно типизировать под кейс с кастомным инпутом
+            // @ts-ignore TODO Сделать пуллреквест в биндинги*/
+            onChange={(date) => setStartDate(date)}
+            /*
+            // @ts-ignore TODO Сделать пуллреквест в биндинги*/
+            customInput={<CustomInputRef />}
+          />
         </div>
       </div>
     </div>

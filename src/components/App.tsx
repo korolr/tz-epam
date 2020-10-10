@@ -7,6 +7,7 @@ import HeaderContainer from "../containers/HeaderContainer"
 import SearchTextContainer from "../containers/SearchTextContainer"
 import "../static/css/flexboxgrid2.css"
 import "../static/css/main.css"
+import "react-datepicker/dist/react-datepicker.css"
 
 class App extends React.Component {
   render() {

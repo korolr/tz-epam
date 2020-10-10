@@ -15,7 +15,13 @@ export const SearchText: FunctionComponent<Props> = ({ articles, text }) => {
     keys: ["title", "priview", "text"],
   }
   const fuse = new Fuse(articles, options)
+  console.log(text)
   const searchedAricles = fuse.search(text)
+  articles.map((a) => {
+    if (a.date === text) {
+      searchedAricles.push({ item: a, refIndex: a.id })
+    }
+  })
   if (searchedAricles.length === 0) {
     return (
       <div className="container">
