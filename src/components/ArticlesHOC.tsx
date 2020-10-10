@@ -4,10 +4,10 @@ import { Props as PropsS } from "./SearchText"
 
 interface Props extends PropsA, PropsS {}
 
-export const ArticlesWrapper = (
-  WrappedComponent: FunctionComponent<Props>,
+export const ArticlesWrapper = <T extends Props>(
+  WrappedComponent: FunctionComponent<T>,
   ErrorComponent: FunctionComponent,
-  props: Props,
+  props: T,
   id?: number
 ) => {
   const { articles, status, fetchArticles } = props
