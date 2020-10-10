@@ -6,6 +6,16 @@ body {
   color: #a0a0a0;
 }
 
+.edit-button {
+  height: 40px;
+  width: 280px;
+  font-size: 15pt;
+}
+
+.edit-button_add {
+  margin-top: 5px;
+}
+
 .article-card {
   margin-top: 30px;
 }
@@ -40,6 +50,13 @@ body {
 
   font-weight: bold;
   font-size: 24pt;
+}
+
+.article-edit {
+  float: right;
+  margin-right: 5px;
+  height: 40px;
+  width: 160px;
 }
 
 .paginator-cell {
