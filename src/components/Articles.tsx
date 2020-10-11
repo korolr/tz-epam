@@ -7,34 +7,20 @@ import { Paginator } from "./Paginator"
 export interface Props {
   articles: Array<Article>
   fetchArticles: (number?: number) => void
+  removeArticle?: (number?: number) => void
   status?: string | null
   id?: number
+  editMode?: boolean
 }
 
-export const Articles: FunctionComponent<Props> = ({ articles, id }) => {
-  const [editMode, setEditMode] = useState(false)
+export const Articles: FunctionComponent<Props> = ({
+  articles,
+  id,
+  removeArticle,
+  editMode,
+}) => {
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-9"></div>
-          <div className="col-xs-3">
-            <button
-              className="edit-button"
-              onClick={(e) => setEditMode(!editMode)}
-            >
-              Режим редактирования
-            </button>
-            {editMode && (
-              <Link href={"/add/"}>
-                <button className="edit-button edit-button_add">
-                  Добавить статью
-                </button>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
       <div className="container">
         {articles.map((article) => (
           <div
@@ -64,6 +50,14 @@ export const Articles: FunctionComponent<Props> = ({ articles, id }) => {
                 <Link href={"/edit/" + article.id}>
                   <button className="article article-edit">Edit</button>
                 </Link>
+              )}
+              {editMode && (
+                <button
+                  className="article article-edit article-edit_remove"
+                  onClick={() => removeArticle(article.id)}
+                >
+                  Remove
+                </button>
               )}
             </div>
           </div>

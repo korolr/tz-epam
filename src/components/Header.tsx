@@ -2,8 +2,6 @@ import React, { FunctionComponent, useState, forwardRef } from "react"
 import { Link, useLocation } from "wouter"
 import DatePicker from "react-datepicker"
 
-import { Article } from "../reducers/articles"
-
 export interface PropsInput {
   value: string
   onClick: (e: React.MouseEvent<HTMLInputElement>) => void
