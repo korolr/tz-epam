@@ -12,17 +12,22 @@ export const ArticlesWrapper = <T extends Props>(
   ErrorComponent: FunctionComponent,
   props: T,
   button: boolean,
-  id?: number | null
+  id?: string
 ) => {
   const { articles, status, fetchArticles } = props
 
   useEffect(() => {
-    id !== null ? fetchArticles(id) : !articles.length && fetchArticles() // if not array get from api
+    id !== null
+      ? fetchArticles(parseInt(id))
+      : !articles.length && fetchArticles() // if not array get from api
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
   const [editMode, setEditMode] = useState(false)
 
+  if (id !== null && Number.isNaN(parseInt(id))) {
+    return <ErrorComponent>Bad Request</ErrorComponent>
+  }
   if (status) {
     return <ErrorComponent>{status}</ErrorComponent>
   }

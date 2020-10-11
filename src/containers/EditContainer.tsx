@@ -32,15 +32,17 @@ const EditContainer: FunctionComponent<Props> = ({
   toEditArticle,
   status,
 }) => {
-  const [, params] = useRoute("/search/:text")
+  const [, params] = useRoute("/edit/:text")
   return ArticlesWrapper(
     Edit,
     Error,
     {
       articles: articles,
       fetchArticles: toFetchArticles,
-      setArticlesViewed: toSetArticlesViewed,
-      pageNumber: parseInt(params.id),
+      addArticle: toAddArticle,
+      editArticle: toEditArticle,
+      status: status,
+      text: params.text,
     },
     false,
     null

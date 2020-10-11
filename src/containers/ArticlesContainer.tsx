@@ -42,10 +42,10 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       fetchArticles: params === null ? toFetchArticles : toFetchFakeArticles,
       removeArticle: toRemoveArticle,
       // for page /
-      id: params === null ? null : parseInt(params.id),
+      id: params === null ? null : params.id,
     },
     true,
-    params === null ? null : parseInt(params.id)
+    params === null ? null : params.id
   )
 }
 

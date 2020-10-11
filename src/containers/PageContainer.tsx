@@ -38,7 +38,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       fetchArticles: toFetchArticles,
       setArticlesViewed: toSetArticlesViewed,
       status: status,
-      text: params.text,
+      id: params.id,
     },
     false,
     null

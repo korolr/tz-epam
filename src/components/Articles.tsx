@@ -9,7 +9,7 @@ export interface Props {
   fetchArticles: (number?: number) => void
   removeArticle?: (number?: number) => void
   status?: string | null
-  id?: number
+  id?: string
   editMode?: boolean
 }
 

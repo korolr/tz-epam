@@ -2,16 +2,18 @@ import React, { FunctionComponent } from "react"
 import { Link } from "wouter"
 
 export interface Props {
-  status: number
+  status: string
 }
 
 export const Paginator: FunctionComponent<Props> = ({ status }) => {
+  const intStatus = parseInt(status)
   return (
     <div className="container paginator">
       <div className="row paginator-cell">
         <Link
           href={
-            "/pag/" + (status === null ? 1 : status > 1 ? status - 1 : status)
+            "/pag/" +
+            (status === null ? 1 : intStatus > 1 ? intStatus - 1 : status)
           }
         >
           <button>Left</button>
@@ -19,7 +21,7 @@ export const Paginator: FunctionComponent<Props> = ({ status }) => {
         {[1, 2, 3].map((a) => {
           return (
             <Link href={"/pag/" + a} key={a}>
-              <button className={status === a ? "paginator-active" : ""}>
+              <button className={intStatus === a ? "paginator-active" : ""}>
                 {a}
               </button>
             </Link>
@@ -27,7 +29,8 @@ export const Paginator: FunctionComponent<Props> = ({ status }) => {
         })}
         <Link
           href={
-            "/pag/" + (status === null ? 2 : status < 3 ? status + 1 : status)
+            "/pag/" +
+            (status === null ? 2 : intStatus < 3 ? intStatus + 1 : status)
           }
         >
           <button>Right</button>
