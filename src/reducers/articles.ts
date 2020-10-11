@@ -4,6 +4,9 @@ import {
   ARTICLES_SUCCESS,
   ARTICLES_FAIL,
   ARTICLES_VIEWED,
+  ARTICLES_EDIT,
+  ARTICLES_ADD,
+  ARTICLES_REMOVE,
   articlesAction,
 } from "../actions/articlesActions"
 
@@ -51,12 +54,28 @@ export function articlesReducer(
         status: null,
       }
     case ARTICLES_VIEWED:
-      console.log("s")
       return {
         ...state,
         data: state.data.map((a) =>
           a.id === action.payload ? { ...a, viewed: true } : a
         ),
+      }
+    case ARTICLES_EDIT:
+      return {
+        ...state,
+        data: state.data.map((a) =>
+          a.id === action.payload.id ? action.payload.data : a
+        ),
+      }
+    case ARTICLES_ADD:
+      return {
+        ...state,
+        data: [...state.data, ...[action.payload]],
+      }
+    case ARTICLES_REMOVE:
+      return {
+        ...state,
+        data: state.data.filter((a) => (a.id !== action.payload ? a : false)),
       }
     default:
       return state

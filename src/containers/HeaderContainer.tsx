@@ -2,10 +2,8 @@ import { FunctionComponent } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 
-import { articlesAction, fetchArticles } from "../actions/articlesActions"
+import { articlesAction } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles } from "../selectors/articles"
-import { Article } from "../reducers/articles"
 import { Header } from "../components/Header"
 import React from "react"
 
