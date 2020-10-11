@@ -2,6 +2,9 @@ import React, { FunctionComponent, useEffect } from "react"
 import { useForm } from "react-hook-form"
 
 import { Article } from "../reducers/articles"
+import { Error } from "./Error"
+import { toBase64 } from "../util"
+import { editArticle } from "../actions/articlesActions"
 
 export interface Props {
   articles: Array<Article>
@@ -18,29 +21,75 @@ export const Edit: FunctionComponent<Props> = ({
   editArticle,
   text,
 }) => {
-  const { register, handleSubmit, watch, errors } = useForm()
-  const onSubmit = (data: any) => console.log(data)
+  const { register, handleSubmit, errors, setValue } = useForm()
+  const onSubmit = (data: any) => {
+    editArticle(parseInt(text), {
+      ...data,
+      id: parseInt(text),
+      visible: true,
+      viewed: false,
+    })
+  }
 
-  console.log(watch("example")) // watch input value by passing the name of it
-  if (text !== "add") {
-    const article = articles.filter((article) => article.id === parseInt(text))
+  const article = articles.filter((article) => article.id === parseInt(text))
 
-    if (article.length === 0) {
-      return <div className="container">Not Found Article</div>
-    }
+  const handleChange = (e: any) => {
+    toBase64(e.target.files[0]).then((data) => {
+      setValue("image", data)
+    })
+  }
+
+  if (article.length === 0) {
+    return <div className="container">Not Found Article</div>
+  }
+
+  if (text !== "add" && Number.isNaN(parseInt(text))) {
+    return <Error>Bad Request</Error>
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {/* register your input into the hook by invoking the "register" function */}
-      <input name="example" defaultValue="test" ref={register} />
-
-      {/* include validation with required or other standard HTML validation rules */}
-      <input name="exampleRequired" ref={register({ required: true })} />
-      {/* errors will return when field validation fails  */}
-      {errors.exampleRequired && <span>This field is required</span>}
-
-      <input type="submit" />
-    </form>
+    <div className="container">
+      <div className="row">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            name="title"
+            defaultValue={article[0].title}
+            ref={register({ required: true })}
+          />
+          {errors.title && <span>This field is required</span>}
+          <br />
+          <input
+            name="date"
+            defaultValue={article[0].date}
+            ref={register({ required: true })}
+          />
+          {errors.date && <span>This field is required</span>}
+          <br />
+          <input
+            name="image"
+            defaultValue={article[0].image}
+            ref={register({ required: true })}
+          />
+          <input name="image-select" type="file" onChange={handleChange} />
+          {errors.image && <span>This field is required</span>}
+          <br />
+          <input
+            name="priview"
+            defaultValue={article[0].priview}
+            ref={register({ required: true })}
+          />
+          {errors.priview && <span>This field is required</span>}
+          <br />
+          <input
+            name="text"
+            defaultValue={article[0].text}
+            ref={register({ required: true })}
+          />
+          {errors.text && <span>This field is required</span>}
+          <br />
+          <input type="submit" />
+        </form>
+      </div>{" "}
+    </div>
   )
 }
