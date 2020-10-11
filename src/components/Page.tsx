@@ -7,22 +7,22 @@ export interface Props {
   fetchArticles: (number?: number) => void
   status?: string | null
   text?: string
-  id?: number
+  pageNumber?: number
   setArticlesViewed?: (id: number) => void
 }
 
 export const Page: FunctionComponent<Props> = ({
   articles,
-  id,
+  pageNumber,
   setArticlesViewed,
 }) => {
-  const article = articles.filter((article) => article.id === id)
+  const article = articles.filter((article) => article.id === pageNumber)
 
   useEffect(() => {
     if (article.length !== 0 && !article[0].viewed) {
-      setArticlesViewed(id)
+      setArticlesViewed(pageNumber)
     }
-  }, [article, id, setArticlesViewed])
+  }, [article, pageNumber, setArticlesViewed])
 
   if (article.length === 0) {
     return <div className="container">Not Found Article</div>

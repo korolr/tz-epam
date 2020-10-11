@@ -3,7 +3,11 @@ import { connect } from "react-redux"
 import { Dispatch } from "redux"
 import { useRoute } from "wouter"
 
-import { articlesAction, fetchArticles } from "../actions/articlesActions"
+import {
+  articlesAction,
+  fetchArticles,
+  removeArticle,
+} from "../actions/articlesActions"
 import { rootState } from "../reducers"
 import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
@@ -13,6 +17,8 @@ import { ArticlesWrapper } from "../components/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void
+  toRemoveArticle: (number?: number) => void
+
   articles: Array<Article>
   status: string | null
 }
@@ -20,15 +26,23 @@ interface Props {
 const SearchTextContainer: FunctionComponent<Props> = ({
   articles,
   toFetchArticles,
+  toRemoveArticle,
   status,
 }) => {
   const [, params] = useRoute("/search/:text")
-  return ArticlesWrapper(SearchText, Error, {
-    articles: articles,
-    status: status,
-    fetchArticles: toFetchArticles,
-    text: params.text,
-  })
+  return ArticlesWrapper(
+    SearchText,
+    Error,
+    {
+      articles: articles,
+      status: status,
+      fetchArticles: toFetchArticles,
+      removeArticle: toRemoveArticle,
+
+      text: params.text,
+    },
+    false
+  )
 }
 
 const mapStateToProps = (store: rootState) => {
@@ -41,6 +55,7 @@ const mapStateToProps = (store: rootState) => {
 const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   return {
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
+    toRemoveArticle: (number: number) => dispatch(removeArticle(number)),
   }
 }
 

@@ -11,12 +11,13 @@ export const ArticlesWrapper = <T extends Props>(
   WrappedComponent: FunctionComponent<T>,
   ErrorComponent: FunctionComponent,
   props: T,
-  id?: number
+  button: boolean,
+  id?: number | null
 ) => {
   const { articles, status, fetchArticles } = props
 
   useEffect(() => {
-    fetchArticles(id)
+    id !== null ? fetchArticles(id) : !articles.length && fetchArticles() // if not array get from api
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
@@ -27,26 +28,29 @@ export const ArticlesWrapper = <T extends Props>(
   }
   return (
     <>
-      <div className="container">
-        <div className="row">
-          <div className="col-xs-9"></div>
-          <div className="col-xs-3">
-            <button
-              className="edit-button"
-              onClick={(e) => setEditMode(!editMode)}
-            >
-              Режим редактирования
-            </button>
-            {editMode && (
-              <Link href={"/edit/add"}>
-                <button className="edit-button edit-button_add">
-                  Добавить статью
-                </button>
-              </Link>
-            )}
+      {button ? (
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-9"></div>
+            <div className="col-xs-3">
+              <button
+                className="edit-button"
+                onClick={(e) => setEditMode(!editMode)}
+              >
+                Режим редактирования
+              </button>
+              {editMode && (
+                <Link href={"/edit/add"}>
+                  <button className="edit-button edit-button_add">
+                    Добавить статью
+                  </button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
+
       {!articles.length ? (
         <ErrorComponent>Нет статей</ErrorComponent>
       ) : (

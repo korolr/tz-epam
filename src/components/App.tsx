@@ -2,7 +2,7 @@ import * as React from "react"
 import { Route, Switch } from "wouter"
 
 import ArticlesContainer from "../containers/ArticlesContainer"
-import HeaderContainer from "../containers/HeaderContainer"
+import { Header } from "./Header"
 import SearchTextContainer from "../containers/SearchTextContainer"
 import PageContainer from "../containers/PageContainer"
 
@@ -14,7 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <HeaderContainer />
+        <Header />
         <Switch>
           <Route path="/" component={ArticlesContainer} />
           <Route path="/pag/:id" component={ArticlesContainer} />

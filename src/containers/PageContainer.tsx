@@ -9,7 +9,7 @@ import {
   setArticlesViewed,
 } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles } from "../selectors/articles"
+import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Page } from "../components/Page"
 import { Error } from "../components/Error"
@@ -19,26 +19,36 @@ interface Props {
   toFetchArticles: (number?: number) => void
   toSetArticlesViewed: (id?: number) => void
   articles: Array<Article>
+  status: string | null
 }
 
 const ArticlesContainer: FunctionComponent<Props> = ({
   articles,
   toFetchArticles,
   toSetArticlesViewed,
+  status,
 }) => {
   const [, params] = useRoute("/article/:id")
 
-  return ArticlesWrapper(Page, Error, {
-    articles: articles,
-    fetchArticles: toFetchArticles,
-    setArticlesViewed: toSetArticlesViewed,
-    id: parseInt(params.id),
-  })
+  return ArticlesWrapper(
+    Page,
+    Error,
+    {
+      articles: articles,
+      fetchArticles: toFetchArticles,
+      setArticlesViewed: toSetArticlesViewed,
+      status: status,
+      text: params.text,
+    },
+    false,
+    null
+  )
 }
 
 const mapStateToProps = (store: rootState) => {
   return {
     articles: getVisibleArticles(store),
+    status: getStatusArticles(store),
   }
 }
 
