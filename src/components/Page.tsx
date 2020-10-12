@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useEffect } from "react"
+import { Link } from "wouter"
 
 import { Article } from "../reducers/articles"
 
@@ -9,12 +10,14 @@ export interface Props {
   text?: string
   id?: string
   setArticlesViewed?: (id: number) => void
+  editMode?: boolean
 }
 
 export const Page: FunctionComponent<Props> = ({
   articles,
   id,
   setArticlesViewed,
+  editMode,
 }) => {
   const article = articles.filter((article) => article.id === parseInt(id))
 
@@ -37,6 +40,11 @@ export const Page: FunctionComponent<Props> = ({
           </div>
           <div className="col-xs-2 article-date">{article[0].date}</div>
         </div>
+        {editMode && (
+          <Link href={"/edit/" + article[0].id}>
+            <button className="article article-edit-page">Edit</button>
+          </Link>
+        )}
         <div className="row">
           <div className="col-xs-12">
             <div className="article article-pre">

@@ -40,7 +40,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       status: status,
       id: params.id,
     },
-    false,
+    true,
     null
   )
 }

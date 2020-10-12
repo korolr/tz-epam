@@ -56,6 +56,12 @@ body {
   font-size: 24pt;
 }
 
+.article-edit-page {
+  float: right;
+  height: 40px;
+  width: 160px;
+}
+
 .article-edit {
   float: right;
   margin-right: 5px;

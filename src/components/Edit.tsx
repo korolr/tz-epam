@@ -28,16 +28,28 @@ export const Edit: FunctionComponent<Props> = ({
   const [imageBase, setImageBase] = useState("")
 
   const onSubmit = (data: { title: string; priview: string; text: string }) => {
-    let id = parseInt(text)
-    editArticle(id, {
-      ...data,
-      id: id,
-      image: imageBase,
-      date: startDate.toLocaleDateString("ru-RU"),
-      visible: true,
-      viewed: false,
-    })
-    setLocation("/article/" + id)
+    if (text === "add") {
+      addArticle({
+        ...data,
+        id: article[0].id,
+        image: imageBase,
+        date: startDate.toLocaleDateString("ru-RU"),
+        visible: true,
+        viewed: false,
+      })
+      setLocation("/article/" + article[0].id)
+    } else {
+      let id = parseInt(text)
+      editArticle(id, {
+        ...data,
+        id: id,
+        image: imageBase,
+        date: startDate.toLocaleDateString("ru-RU"),
+        visible: true,
+        viewed: false,
+      })
+      setLocation("/article/" + id)
+    }
   }
 
   const article = articles.filter((article) => article.id === parseInt(text))
@@ -54,13 +66,22 @@ export const Edit: FunctionComponent<Props> = ({
       setImageBase(data)
     })
   }
-
-  if (article.length === 0) {
-    return <div className="container">Not Found Article</div>
-  }
-
-  if (text !== "add" && Number.isNaN(parseInt(text))) {
+  if (text === "add") {
+    article.push({
+      id: articles.length + 2,
+      title: "Title article",
+      image: imageBase,
+      date: startDate.toLocaleDateString("ru-RU"),
+      visible: true,
+      viewed: false,
+      priview: "Priview text",
+      text:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    })
+  } else if (Number.isNaN(parseInt(text))) {
     return <Error>Bad Request</Error>
+  } else if (article.length === 0) {
+    return <div className="container">Not Found Article</div>
   }
 
   return (
