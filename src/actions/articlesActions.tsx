@@ -34,6 +34,13 @@ export interface ARTICLES_FETCH extends Action {
   payload: number
 }
 
+export const ARTICLES_STATUS = "ARTICLES_STATUS"
+
+export interface ARTICLES_STATUS extends Action {
+  type: typeof ARTICLES_STATUS
+  payload: number
+}
+
 export const ARTICLES_EDIT = "ARTICLES_EDIT"
 
 export interface ARTICLES_EDIT extends Action {
@@ -79,6 +86,7 @@ export type articlesAction =
   | ARTICLES_EDIT
   | ARTICLES_ADD
   | ARTICLES_REMOVE
+  | ARTICLES_STATUS
 
 // ----------------------------------------------------------
 
@@ -116,6 +124,10 @@ export function addArticle(data: Article): ARTICLES_ADD {
 
 export function removeArticle(id: number): ARTICLES_REMOVE {
   return { type: ARTICLES_REMOVE, payload: id }
+}
+
+export function setStatusArticles(id: number): ARTICLES_STATUS {
+  return { type: ARTICLES_STATUS, payload: id }
 }
 
 export function fetchFakePagArticles(number: number): ARTICLES_FETCH_FAKE {

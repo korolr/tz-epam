@@ -7,9 +7,14 @@ import {
   articlesAction,
   fetchArticles,
   setArticlesViewed,
+  setStatusArticles,
 } from "../actions/articlesActions"
 import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
+import {
+  getVisibleArticles,
+  getStatusArticles,
+  getLast,
+} from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Page } from "../components/Page"
 import { Error } from "../components/Error"
@@ -18,15 +23,20 @@ import { ArticlesWrapper } from "../components/ArticlesHOC"
 interface Props {
   toFetchArticles: (number?: number) => void
   toSetArticlesViewed: (id?: number) => void
+  toSetStatusArticles: (id?: number) => void
+
   articles: Array<Article>
   status: string | null
+  last: number
 }
 
 const ArticlesContainer: FunctionComponent<Props> = ({
   articles,
   toFetchArticles,
   toSetArticlesViewed,
+  toSetStatusArticles,
   status,
+  last,
 }) => {
   const [, params] = useRoute("/article/:id")
 
@@ -37,6 +47,8 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       articles: articles,
       fetchArticles: toFetchArticles,
       setArticlesViewed: toSetArticlesViewed,
+      setStatusArticles: toSetStatusArticles,
+      last: last,
       status: status,
       id: params.id,
     },
@@ -49,11 +61,13 @@ const mapStateToProps = (store: rootState) => {
   return {
     articles: getVisibleArticles(store),
     status: getStatusArticles(store),
+    last: getLast(store),
   }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
   return {
+    toSetStatusArticles: (id: number) => dispatch(setStatusArticles(id)),
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
     toSetArticlesViewed: (id: number) => dispatch(setArticlesViewed(id)),
   }

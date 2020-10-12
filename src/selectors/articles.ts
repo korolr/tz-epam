@@ -11,3 +11,5 @@ export const getStatusArticles = createSelector(
   getArticles,
   (articles) => articles.status
 )
+
+export const getLast = createSelector(getArticles, (articles) => articles.last)

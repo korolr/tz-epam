@@ -10,6 +10,8 @@ export interface Props {
   text?: string
   id?: string
   setArticlesViewed?: (id: number) => void
+  setStatusArticles?: (id: number) => void
+  last?: number
   editMode?: boolean
 }
 
@@ -17,15 +19,24 @@ export const Page: FunctionComponent<Props> = ({
   articles,
   id,
   setArticlesViewed,
+  setStatusArticles,
   editMode,
+  last,
 }) => {
-  const article = articles.filter((article) => article.id === parseInt(id))
+  const idParse = parseInt(id)
+  const article = articles.filter((article) => article.id === idParse)
 
   useEffect(() => {
-    if (article.length !== 0 && !article[0].viewed) {
-      setArticlesViewed(parseInt(id))
+    if (article.length > 0) {
+      if (last !== idParse) {
+        setStatusArticles(parseInt(id))
+      }
+      if (!article[0].viewed) {
+        setArticlesViewed(parseInt(id))
+      }
     }
-  }, [article, id, setArticlesViewed])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [article, id, last])
 
   if (article.length === 0) {
     return <div className="container">Not Found Article</div>

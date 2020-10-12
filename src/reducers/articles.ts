@@ -7,6 +7,7 @@ import {
   ARTICLES_EDIT,
   ARTICLES_ADD,
   ARTICLES_REMOVE,
+  ARTICLES_STATUS,
   articlesAction,
 } from "../actions/articlesActions"
 
@@ -23,12 +24,13 @@ export type Article = {
 
 export interface StoreStateArticles {
   data: Array<Article>
-  last?: number
+  last: number | null
   status: string | null
 }
 
 const initialState: StoreStateArticles = {
   data: [],
+  last: null,
   status: "Loading",
 }
 
@@ -38,7 +40,7 @@ export function articlesReducer(
 ): StoreStateArticles {
   switch (action.type) {
     case ARTICLES_REQUEST:
-      return { data: [], status: "Loading" }
+      return { ...state, data: [], status: "Loading" }
     case ARTICLES_SUCCESS:
       return {
         ...state,
@@ -60,6 +62,12 @@ export function articlesReducer(
           a.id === action.payload ? { ...a, viewed: true } : a
         ),
       }
+    case ARTICLES_STATUS:
+      console.log(action.payload)
+      return {
+        ...state,
+        last: action.payload,
+      }
     case ARTICLES_EDIT:
       return {
         ...state,
@@ -77,6 +85,7 @@ export function articlesReducer(
         ...state,
         data: state.data.filter((a) => (a.id !== action.payload ? a : false)),
       }
+
     default:
       return state
   }
