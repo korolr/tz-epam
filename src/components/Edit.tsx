@@ -54,10 +54,20 @@ export const Edit: FunctionComponent<Props> = ({
 
   const article = articles.filter((article) => article.id === parseInt(text))
 
+  console.log(article)
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-    article.length >= 1 &&
-      (setStartDate(new Date(article[0].date)), setImageBase(article[0].image))
+    article.length !== 0 &&
+      (setStartDate(
+        new Date(
+          article[0].date
+            .split(".")
+            .map((a) => parseInt(a))
+            .reverse()
+            .join()
+        )
+      ),
+      setImageBase(article[0].image))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -108,7 +118,6 @@ export const Edit: FunctionComponent<Props> = ({
               selected={startDate}
               dateFormat="dd/MM/yyyy"
               popperPlacement="top-end"
-              // Плохие биндинги воообще невозможно типизировать под кейс с кастомным инпутом
               // @ts-ignore TODO Сделать пуллреквест в биндинги*/
               onChange={(date) => setStartDate(date)}
             />

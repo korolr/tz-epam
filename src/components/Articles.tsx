@@ -9,7 +9,8 @@ export interface Props {
   fetchArticles: (number?: number) => void
   removeArticle?: (number?: number) => void
   status?: string | null
-  id?: string
+  id?: string | null
+  text?: string | null
   editMode?: boolean
 }
 
@@ -27,7 +28,7 @@ export const Articles: FunctionComponent<Props> = ({
             className={article.viewed ? "row article-card-gray" : "row"}
             key={article.id}
           >
-            <div className="col-xs-2">
+            <div className="col-lg-2 col-xs-12">
               <Link href={"/article/" + article.id} key={article.id}>
                 <h2 className="article article-h2">{article.title}</h2>
               </Link>
@@ -38,13 +39,13 @@ export const Articles: FunctionComponent<Props> = ({
                 className="article article-img"
               />
             </div>
-            <div className="col-xs-8">
+            <div className="col-lg-8 col-xs-10">
               <Link href={"/article/" + article.id}>
                 <div className="article article-pre">{article.priview}</div>
               </Link>
             </div>
 
-            <div className="col-xs-2">
+            <div className="col-lg-2 col-xs-2">
               <div className="article article-date">{article.date}</div>
               {editMode && (
                 <Link href={"/edit/" + article.id}>
