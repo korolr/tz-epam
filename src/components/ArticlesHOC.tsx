@@ -12,7 +12,7 @@ export const ArticlesWrapper = <T extends Props>(
   ErrorComponent: FunctionComponent,
   props: T,
   button: boolean,
-  id?: string
+  id: string | null
 ) => {
   const { articles, status, fetchArticles } = props
 
@@ -42,13 +42,11 @@ export const ArticlesWrapper = <T extends Props>(
                 className="edit-button"
                 onClick={(e) => setEditMode(!editMode)}
               >
-                Режим редактирования
+                Edit
               </button>
               {editMode && (
                 <Link href={"/edit/add"}>
-                  <button className="edit-button edit-button_add">
-                    Добавить статью
-                  </button>
+                  <button className="edit-button edit-button_add">Add</button>
                 </Link>
               )}
             </div>

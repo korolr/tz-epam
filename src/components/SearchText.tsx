@@ -19,6 +19,7 @@ export const SearchText: FunctionComponent<Props> = ({
   editMode,
   removeArticle,
 }) => {
+  console.log(text)
   const options = {
     keys: ["title", "priview", "text"],
   }
@@ -44,7 +45,7 @@ export const SearchText: FunctionComponent<Props> = ({
             className={article.item.viewed ? "row article-card-gray" : "row"}
             key={article.item.id}
           >
-            <div className="col-xs-2">
+            <div className="col-lg-2 col-xs-12">
               <Link href={"/article/" + article.item.id} key={article.item.id}>
                 <h2 className="article article-h2">{article.item.title}</h2>{" "}
               </Link>
@@ -52,17 +53,17 @@ export const SearchText: FunctionComponent<Props> = ({
               <img
                 src={article.item.image}
                 alt="article_img"
-                className="article article-img"
+                className="article article-img col-lg-12"
               />
             </div>
-            <div className="col-xs-8">
+            <div className="col-lg-8 col-xs-10">
               <Link href={"/article/" + article.item.id} key={article.item.id}>
                 <div className="article article-pre">
                   {article.item.priview}
                 </div>
               </Link>
             </div>
-            <div className="col-xs-2">
+            <div className="col-lg-2 col-xs-2">
               <div className="article article-date">{article.item.date}</div>
               {editMode && (
                 <Link href={"/edit/" + article.item.id}>

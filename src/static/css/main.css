@@ -7,8 +7,7 @@ body {
 }
 
 .edit-button {
-  height: 40px;
-  width: 280px;
+  width: 100%;
   font-size: 15pt;
 }
 
@@ -38,6 +37,7 @@ body {
 }
 
 .article-img-post {
+  float: left;
   height: 150px;
   width: 150px;
 }
@@ -46,6 +46,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  font-size: 18pt;
+}
+
+.article-pre-page {
   font-size: 18pt;
 }
 
@@ -58,13 +62,6 @@ body {
 
 .article-edit-page {
   float: right;
-  height: 40px;
-  width: 160px;
-}
-
-.article-edit {
-  float: right;
-  margin-right: 5px;
   height: 40px;
   width: 160px;
 }
@@ -135,4 +132,90 @@ body {
 .edit-file {
   vertical-align: top;
   display: inline-block;
+}
+
+.article-edit {
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .article-edit {
+    margin-left: 15px;
+  }
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 170px;
+  }
+
+  .header-searchDate-input {
+    margin-left: 50px;
+  }
+
+  .header-searchDate-button {
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 47px;
+    height: 47px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .article-date {
+    font-size: 15pt;
+  }
+  .header-searchDate-input {
+    margin-left: 10px;
+  }
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 100px;
+  }
+
+  .header-searchDate-input {
+    font-size: 10pt;
+    font-weight: bold;
+
+    height: 41px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 772px) {
+  .header-searchDate-input {
+    margin-left: 0px;
+  }
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 68px;
+  }
+
+  .header-searchDate-input {
+    font-size: 10pt;
+    font-weight: bold;
+
+    height: 41px;
+    width: 68px;
+  }
+
+  .header-searchDate-button {
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 47px;
+    height: 47px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .header-searchDate-button {
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 30px;
+    height: 47px;
+  }
 }

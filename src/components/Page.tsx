@@ -47,13 +47,13 @@ export const Page: FunctionComponent<Props> = ({
         )}
         <div className="row">
           <div className="col-xs-12">
-            <div className="article article-pre">
+            <div className="article article-pre-page">
               <img
                 src={article[0].image}
                 alt="article_img"
                 className="article article-img-post"
               />
-              {article[0].text}
+              <p>{article[0].text}</p>
             </div>
           </div>
         </div>

@@ -41,7 +41,8 @@ const SearchTextContainer: FunctionComponent<Props> = ({
 
       text: params.text,
     },
-    false
+    false,
+    null
   )
 }
 
