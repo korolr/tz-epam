@@ -117,3 +117,16 @@ body {
   width: 47px;
   height: 47px;
 }
+
+.edit-input {
+  width: 100% !important;
+}
+
+.edit-input_area {
+  height: 130px;
+}
+
+.edit-file {
+  vertical-align: top;
+  display: inline-block;
+}
