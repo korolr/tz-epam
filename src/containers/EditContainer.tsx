@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import { FunctionComponent } from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
 import { useRoute } from "wouter"
@@ -15,7 +15,7 @@ import { Article } from "../reducers/articles"
 import { Edit } from "../components/Edit"
 import { Error } from "../components/Error"
 
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void
@@ -33,20 +33,14 @@ const EditContainer: FunctionComponent<Props> = ({
   status,
 }) => {
   const [, params] = useRoute("/edit/:text")
-  return ArticlesWrapper(
-    Edit,
-    Error,
-    {
-      articles: articles,
-      fetchArticles: toFetchArticles,
-      addArticle: toAddArticle,
-      editArticle: toEditArticle,
-      status: status,
-      text: params.text,
-    },
-    false,
-    null
-  )
+  return ArticlesWrapper(Edit, Error, {
+    articles: articles,
+    fetchArticles: toFetchArticles,
+    addArticle: toAddArticle,
+    editArticle: toEditArticle,
+    status: status,
+    text: params.text,
+  })
 }
 
 const mapStateToProps = (store: rootState) => {

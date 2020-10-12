@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react"
-import { Props as PropsA } from "./Articles"
-import { Props as PropsS } from "./SearchText"
-import { Props as PropsP } from "./Page"
-import { Props as PropsE } from "./Edit"
+import { Props as PropsA } from "../components/Articles"
+import { Props as PropsS } from "../components/SearchText"
+import { Props as PropsP } from "../components/Page"
+import { Props as PropsE } from "../components/Edit"
 import { Link } from "wouter"
 
 interface Props extends PropsA, PropsS, PropsP, PropsE {}
@@ -11,10 +11,11 @@ export const ArticlesWrapper = <T extends Props>(
   WrappedComponent: FunctionComponent<T>,
   ErrorComponent: FunctionComponent,
   props: T,
-  button: boolean,
-  id: string | null
+  button: boolean = false,
+  id: string | null = null
 ) => {
   const { articles, status, fetchArticles } = props
+  const [editMode, setEditMode] = useState(false)
 
   useEffect(() => {
     id !== null
@@ -23,13 +24,9 @@ export const ArticlesWrapper = <T extends Props>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  const [editMode, setEditMode] = useState(false)
-
+  // проверка на плохой запрос в роутере
   if (id !== null && Number.isNaN(parseInt(id))) {
     return <ErrorComponent>Bad Request</ErrorComponent>
-  }
-  if (status) {
-    return <ErrorComponent>{status}</ErrorComponent>
   }
   return (
     <>
@@ -56,6 +53,8 @@ export const ArticlesWrapper = <T extends Props>(
 
       {!articles.length ? (
         <ErrorComponent>Нет статей</ErrorComponent>
+      ) : status ? (
+        <ErrorComponent>{status}</ErrorComponent>
       ) : (
         <WrappedComponent {...props} editMode={editMode} />
       )}

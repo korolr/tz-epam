@@ -52,8 +52,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       status: status,
       id: params.id,
     },
-    true,
-    null
+    true
   )
 }
 

@@ -52,6 +52,12 @@ export const Edit: FunctionComponent<Props> = ({
     }
   }
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    toBase64(e.target.files[0]).then((data: string) => {
+      setImageBase(data)
+    })
+  }
+
   const article = articles.filter((article) => article.id === parseInt(text))
 
   console.log(article)
@@ -71,11 +77,6 @@ export const Edit: FunctionComponent<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    toBase64(e.target.files[0]).then((data: string) => {
-      setImageBase(data)
-    })
-  }
   if (text === "add") {
     article.push({
       id: articles.length + 2,
