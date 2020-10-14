@@ -18,7 +18,7 @@ import {
 import { Article } from "../reducers/articles"
 import { Page } from "../components/Page"
 import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void

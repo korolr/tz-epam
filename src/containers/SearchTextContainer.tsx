@@ -13,7 +13,7 @@ import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { SearchText } from "../components/SearchText"
 import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void

@@ -14,7 +14,7 @@ import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
 import { Article } from "../reducers/articles"
 import { Articles } from "../components/Articles"
 import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void
