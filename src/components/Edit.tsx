@@ -60,7 +60,6 @@ export const Edit: FunctionComponent<Props> = ({
 
   const article = articles.filter((article) => article.id === parseInt(text))
 
-  console.log(article)
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     article.length !== 0 &&
@@ -141,6 +140,7 @@ export const Edit: FunctionComponent<Props> = ({
           </p>
           <br />
           <div>
+            <br />
             <b>Priview:</b>
             <br />
             <textarea

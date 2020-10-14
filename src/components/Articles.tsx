@@ -69,7 +69,7 @@ export const Articles: FunctionComponent<Props> = ({
           </div>
         ))}
       </div>
-      <Paginator status={id} />
+      <Paginator id={id} />
     </>
   )
 }
