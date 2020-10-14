@@ -1,4 +1,4 @@
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export const fakeRequest = (number: number): Promise<Array<Article>> => {
   return new Promise((resolve, reject) => {

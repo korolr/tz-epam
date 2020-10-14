@@ -1,5 +1,5 @@
 import { Action } from "redux"
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export const ARTICLES_REQUEST = "ARTICLES_REQUEST"
 

@@ -1,10 +1,10 @@
 import { combineReducers } from "redux"
-import { articlesReducer, StoreStateArticles } from "./articles"
+import { articlesReducer, StoreStateArticles } from "reducers/articles"
 
 export interface rootState {
-  articles: StoreStateArticles;
+  articles: StoreStateArticles
 }
 
 export const rootReducer = combineReducers({
-  articles: articlesReducer
+  articles: articlesReducer,
 })

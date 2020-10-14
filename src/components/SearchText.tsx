@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react"
 import Fuse from "fuse.js"
 import { Link } from "wouter"
 
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export interface Props {
   articles: Array<Article>
@@ -19,7 +19,6 @@ export const SearchText: FunctionComponent<Props> = ({
   editMode,
   removeArticle,
 }) => {
-  console.log(text)
   const options = {
     keys: ["title", "priview", "text"],
   }
@@ -41,13 +40,18 @@ export const SearchText: FunctionComponent<Props> = ({
     return (
       <div className="container">
         {searchedAricles.map((article) => (
-          <div
-            className={article.item.viewed ? "row article-card-gray" : "row"}
-            key={article.item.id}
-          >
+          <div className="row" key={article.item.id}>
             <div className="col-lg-2 col-xs-12">
               <Link href={"/article/" + article.item.id} key={article.item.id}>
-                <h2 className="article article-h2">{article.item.title}</h2>{" "}
+                <h2
+                  className={
+                    article.item.viewed
+                      ? "article article-h2 article-card-gray"
+                      : "article article-h2"
+                  }
+                >
+                  {article.item.title}
+                </h2>{" "}
               </Link>
 
               <img

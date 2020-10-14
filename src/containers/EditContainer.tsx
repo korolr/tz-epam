@@ -8,12 +8,12 @@ import {
   fetchArticles,
   addArticle,
   editArticle,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { Edit } from "../components/Edit"
-import { Error } from "../components/Error"
+} from "actions/articlesActions"
+import { rootState } from "reducers"
+import { getVisibleArticles, getStatusArticles } from "selectors/articles"
+import { Article } from "reducers/articles"
+import { Edit } from "components/Edit"
+import { Error } from "components/Error"
 
 import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
@@ -39,7 +39,7 @@ const EditContainer: FunctionComponent<Props> = ({
     addArticle: toAddArticle,
     editArticle: toEditArticle,
     status: status,
-    text: params.text,
+    text: params === null ? "" : params.text,
   })
 }
 

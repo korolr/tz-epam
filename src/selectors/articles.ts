@@ -1,5 +1,5 @@
 import { createSelector } from "reselect"
-import { rootState } from "../reducers"
+import { rootState } from "reducers"
 
 const getArticles = (state: rootState) => state.articles
 
