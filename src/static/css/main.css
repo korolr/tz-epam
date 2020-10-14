@@ -43,6 +43,11 @@ body {
   width: 150px;
 }
 
+.article-img-edit {
+  height: 150px;
+  width: 150px;
+}
+
 .article-pre {
   cursor: pointer;
   display: flex;

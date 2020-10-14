@@ -10,9 +10,7 @@ export const Paginator: FunctionComponent<Props> = ({ id }) => {
   return (
     <div className="container paginator">
       <div className="row paginator-cell">
-        <Link
-          href={"/pag/" + (id === null ? 1 : intId > 1 ? intId - 1 : status)}
-        >
+        <Link href={"/pag/" + (id === null ? 1 : intId > 1 ? intId - 1 : id)}>
           <button>Left</button>
         </Link>
         {[1, 2, 3].map((number) => {
@@ -24,11 +22,7 @@ export const Paginator: FunctionComponent<Props> = ({ id }) => {
             </Link>
           )
         })}
-        <Link
-          href={
-            "/pag/" + (status === null ? 2 : intId < 3 ? intId + 1 : status)
-          }
-        >
+        <Link href={"/pag/" + (id === null ? 2 : intId < 3 ? intId + 1 : id)}>
           <button>Right</button>
         </Link>
       </div>

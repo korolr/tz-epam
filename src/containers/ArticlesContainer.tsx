@@ -8,13 +8,13 @@ import {
   fetchArticles,
   removeArticle,
   fetchFakePagArticles,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { Articles } from "../components/Articles"
-import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../hoc/ArticlesHOC"
+} from "actions/articlesActions"
+import { rootState } from "reducers"
+import { getVisibleArticles, getStatusArticles } from "selectors/articles"
+import { Article } from "reducers/articles"
+import { Articles } from "components/Articles"
+import { Error } from "components/Error"
+import { ArticlesWrapper } from "hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void

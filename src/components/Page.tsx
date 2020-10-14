@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect } from "react"
 import { Link } from "wouter"
 
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export interface Props {
   articles: Array<Article>

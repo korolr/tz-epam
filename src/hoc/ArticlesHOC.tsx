@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from "react"
-import { Props as PropsA } from "../components/Articles"
-import { Props as PropsS } from "../components/SearchText"
-import { Props as PropsP } from "../components/Page"
-import { Props as PropsE } from "../components/Edit"
+import { Props as PropsA } from "components/Articles"
+import { Props as PropsS } from "components/SearchText"
+import { Props as PropsP } from "components/Page"
+import { Props as PropsE } from "components/Edit"
 import { Link } from "wouter"
 
 interface Props extends PropsA, PropsS, PropsP, PropsE {}

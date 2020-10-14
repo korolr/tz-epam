@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react"
 import { Link } from "wouter"
 
-import { Article } from "../reducers/articles"
-import { Paginator } from "./Paginator"
+import { Article } from "reducers/articles"
+import { Paginator } from "components/Paginator"
 
 export interface Props {
   articles: Array<Article>
@@ -41,7 +41,7 @@ export const Articles: FunctionComponent<Props> = ({
               <img
                 src={article.image}
                 alt="article_img"
-                className="article article-img"
+                className="article article-img ss"
               />
             </div>
             <div className="col-lg-8 col-xs-10">

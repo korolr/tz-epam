@@ -4,8 +4,8 @@ import { createStore, applyMiddleware } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension" // eslint-disable-line
 import { persistStore, persistReducer } from "redux-persist"
 
-import { rootReducer } from "../reducers"
-import { rootSaga } from "../sagas/rootSaga"
+import { rootReducer } from "reducers"
+import { rootSaga } from "sagas/rootSaga"
 
 const sagaMiddleware = createSagaMiddleware()
 

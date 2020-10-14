@@ -8,17 +8,17 @@ import {
   fetchArticles,
   setArticlesViewed,
   setStatusArticles,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
+} from "actions/articlesActions"
+import { rootState } from "reducers"
 import {
   getVisibleArticles,
   getStatusArticles,
   getLast,
-} from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { Page } from "../components/Page"
-import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../hoc/ArticlesHOC"
+} from "selectors/articles"
+import { Article } from "reducers/articles"
+import { Page } from "components/Page"
+import { Error } from "components/Error"
+import { ArticlesWrapper } from "hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void

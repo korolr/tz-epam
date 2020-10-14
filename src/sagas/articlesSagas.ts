@@ -5,10 +5,10 @@ import {
   ARTICLES_FETCH,
   ARTICLES_FETCH_FAKE,
   successArticles,
-} from "../actions/articlesActions"
-import { Article } from "../reducers/articles"
-import { fakeRequest } from "../api"
-import { rootState } from "../reducers"
+} from "actions/articlesActions"
+import { Article } from "reducers/articles"
+import { fakeRequest } from "api"
+import { rootState } from "reducers"
 
 export function* watchFetchArticles() {
   while (true) {

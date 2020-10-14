@@ -1,14 +1,14 @@
 import * as React from "react"
 import { Route, Switch } from "wouter"
 
-import ArticlesContainer from "../containers/ArticlesContainer"
-import { Header } from "./Header"
-import SearchTextContainer from "../containers/SearchTextContainer"
-import PageContainer from "../containers/PageContainer"
-import EditContainer from "../containers/EditContainer"
+import ArticlesContainer from "containers/ArticlesContainer"
+import { Header } from "components/Header"
+import SearchTextContainer from "containers/SearchTextContainer"
+import PageContainer from "containers/PageContainer"
+import EditContainer from "containers/EditContainer"
 
-import "../static/css/flexboxgrid2.css"
-import "../static/css/main.css"
+import "static/css/flexboxgrid2.css"
+import "static/css/main.css"
 import "react-datepicker/dist/react-datepicker.css"
 
 class App extends React.Component {

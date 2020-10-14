@@ -7,13 +7,13 @@ import {
   articlesAction,
   fetchArticles,
   removeArticle,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { SearchText } from "../components/SearchText"
-import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../hoc/ArticlesHOC"
+} from "actions/articlesActions"
+import { rootState } from "reducers"
+import { getVisibleArticles, getStatusArticles } from "selectors/articles"
+import { Article } from "reducers/articles"
+import { SearchText } from "components/SearchText"
+import { Error } from "components/Error"
+import { ArticlesWrapper } from "hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void
@@ -30,7 +30,6 @@ const SearchTextContainer: FunctionComponent<Props> = ({
   status,
 }) => {
   const [, params] = useRoute("/search/:text")
-  console.log(params)
   return ArticlesWrapper(SearchText, Error, {
     articles: articles,
     status: status,

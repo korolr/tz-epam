@@ -2,8 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "wouter"
 
-import { Article } from "../reducers/articles"
-import { Error } from "./Error"
+import { Article } from "reducers/articles"
+import { Error } from "components/Error"
 import { toBase64 } from "../util"
 import DatePicker from "react-datepicker"
 
@@ -129,7 +129,7 @@ export const Edit: FunctionComponent<Props> = ({
             <img
               src={imageBase}
               alt="article_img"
-              className="article-img-post"
+              className="article-img-edit"
             />
             <input
               name="image-select"
@@ -139,10 +139,9 @@ export const Edit: FunctionComponent<Props> = ({
             />
           </p>
           <br />
+
           <div>
-            <br />
             <b>Priview:</b>
-            <br />
             <textarea
               name="priview"
               defaultValue={article[0].priview}

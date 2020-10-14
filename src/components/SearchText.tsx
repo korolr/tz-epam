@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react"
 import Fuse from "fuse.js"
 import { Link } from "wouter"
 
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export interface Props {
   articles: Array<Article>
@@ -19,7 +19,6 @@ export const SearchText: FunctionComponent<Props> = ({
   editMode,
   removeArticle,
 }) => {
-  console.log(text)
   const options = {
     keys: ["title", "priview", "text"],
   }
