@@ -26,6 +26,7 @@ body {
 .article-h2 {
   margin: 0 auto;
   text-align: center;
+  cursor: pointer;
 }
 
 .article-img {
@@ -43,6 +44,7 @@ body {
 }
 
 .article-pre {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: flex-start;
