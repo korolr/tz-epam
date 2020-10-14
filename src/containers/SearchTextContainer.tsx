@@ -30,13 +30,14 @@ const SearchTextContainer: FunctionComponent<Props> = ({
   status,
 }) => {
   const [, params] = useRoute("/search/:text")
+  console.log(params)
   return ArticlesWrapper(SearchText, Error, {
     articles: articles,
     status: status,
     fetchArticles: toFetchArticles,
     removeArticle: toRemoveArticle,
 
-    text: params.text,
+    text: params === null ? "" : params.text,
   })
 }
 

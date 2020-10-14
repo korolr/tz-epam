@@ -50,7 +50,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       setStatusArticles: toSetStatusArticles,
       last: last,
       status: status,
-      id: params.id,
+      id: params === null ? "" : params.id,
     },
     true
   )

@@ -63,7 +63,6 @@ export function articlesReducer(
         ),
       }
     case ARTICLES_STATUS:
-      console.log(action.payload)
       return {
         ...state,
         last: action.payload,

@@ -39,7 +39,7 @@ const EditContainer: FunctionComponent<Props> = ({
     addArticle: toAddArticle,
     editArticle: toEditArticle,
     status: status,
-    text: params.text,
+    text: params === null ? "" : params.text,
   })
 }
 

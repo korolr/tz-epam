@@ -19,9 +19,13 @@ class App extends React.Component {
         <Switch>
           <Route path="/" component={ArticlesContainer} />
           <Route path="/pag/:id" component={ArticlesContainer} />
+          <Route path="/pag/" component={ArticlesContainer} />
           <Route path="/article/:id" component={PageContainer} />
+          <Route path="/article/" component={PageContainer} />
           <Route path="/search/:text" component={SearchTextContainer} />
+          <Route path="/search/" component={SearchTextContainer} />
           <Route path="/edit/:text" component={EditContainer} />
+          <Route path="/edit/" component={EditContainer} />
 
           <Route>
             <h1>404, Not Found!</h1>

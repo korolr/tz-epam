@@ -51,10 +51,10 @@ export const ArticlesWrapper = <T extends Props>(
         </div>
       ) : null}
 
-      {!articles.length ? (
-        <ErrorComponent>Нет статей</ErrorComponent>
-      ) : status ? (
+      {status ? (
         <ErrorComponent>{status}</ErrorComponent>
+      ) : !articles.length ? (
+        <ErrorComponent>Нет статей</ErrorComponent>
       ) : (
         <WrappedComponent {...props} editMode={editMode} />
       )}
