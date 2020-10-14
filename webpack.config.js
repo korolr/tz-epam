@@ -46,6 +46,7 @@ module.exports = (env, argv) => {
       port: 9000,
       hot: true,
       writeToDisk: true,
+      historyApiFallback: true,
     },
 
     plugins: [
