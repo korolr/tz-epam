@@ -2,8 +2,8 @@ import React, { FunctionComponent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useLocation } from "wouter"
 
-import { Article } from "../reducers/articles"
-import { Error } from "./Error"
+import { Article } from "reducers/articles"
+import { Error } from "components/Error"
 import { toBase64 } from "../util"
 import DatePicker from "react-datepicker"
 
@@ -12,6 +12,8 @@ export interface Props {
   fetchArticles: (number?: number) => void
   addArticle?: (data: Article) => void
   editArticle?: (id: number, data: Article) => void
+  loadArticle?: () => void
+
   status?: string | null
   text?: string | null
 }
@@ -19,7 +21,9 @@ export interface Props {
 export const Edit: FunctionComponent<Props> = ({
   articles,
   addArticle,
+  fetchArticles,
   editArticle,
+  loadArticle,
   text,
 }) => {
   const { register, handleSubmit, errors } = useForm()
@@ -37,6 +41,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + article[0].id)
     } else {
       let id = parseInt(text)
@@ -48,6 +53,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + id)
     }
   }
@@ -60,7 +66,6 @@ export const Edit: FunctionComponent<Props> = ({
 
   const article = articles.filter((article) => article.id === parseInt(text))
 
-  console.log(article)
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     article.length !== 0 &&
@@ -77,9 +82,15 @@ export const Edit: FunctionComponent<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    return () => {
+      loadArticle()
+    }
+  }, [loadArticle])
+
   if (text === "add") {
     article.push({
-      id: articles.length + 2,
+      id: articles.length + 1,
       title: "Title article",
       image: imageBase,
       date: startDate.toLocaleDateString("ru-RU"),
@@ -130,7 +141,7 @@ export const Edit: FunctionComponent<Props> = ({
             <img
               src={imageBase}
               alt="article_img"
-              className="article-img-post"
+              className="article-img-edit"
             />
             <input
               name="image-select"
@@ -140,9 +151,9 @@ export const Edit: FunctionComponent<Props> = ({
             />
           </p>
           <br />
+
           <div>
             <b>Priview:</b>
-            <br />
             <textarea
               name="priview"
               defaultValue={article[0].priview}

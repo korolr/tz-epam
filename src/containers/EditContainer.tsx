@@ -8,12 +8,13 @@ import {
   fetchArticles,
   addArticle,
   editArticle,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
-import { getVisibleArticles, getStatusArticles } from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { Edit } from "../components/Edit"
-import { Error } from "../components/Error"
+  requestArticles,
+} from "actions/articlesActions"
+import { rootState } from "reducers"
+import { getVisibleArticles, getStatusArticles } from "selectors/articles"
+import { Article } from "reducers/articles"
+import { Edit } from "components/Edit"
+import { Error } from "components/Error"
 
 import { ArticlesWrapper } from "../hoc/ArticlesHOC"
 
@@ -21,6 +22,7 @@ interface Props {
   toFetchArticles: (number?: number) => void
   toAddArticle: (data: Article) => void
   toEditArticle: (id: number, data: Article) => void
+  toLoadArticle: () => void
   articles: Array<Article>
   status: string | null
 }
@@ -30,16 +32,18 @@ const EditContainer: FunctionComponent<Props> = ({
   toFetchArticles,
   toAddArticle,
   toEditArticle,
+  toLoadArticle,
   status,
 }) => {
   const [, params] = useRoute("/edit/:text")
   return ArticlesWrapper(Edit, Error, {
     articles: articles,
     fetchArticles: toFetchArticles,
+    loadArticle: toLoadArticle,
     addArticle: toAddArticle,
     editArticle: toEditArticle,
     status: status,
-    text: params.text,
+    text: params === null ? "" : params.text,
   })
 }
 
@@ -56,6 +60,7 @@ const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
     toAddArticle: (data: Article) => dispatch(addArticle(data)),
     toEditArticle: (id: number, data: Article) =>
       dispatch(editArticle(id, data)),
+    toLoadArticle: () => dispatch(requestArticles()),
   }
 }
 

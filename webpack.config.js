@@ -14,6 +14,10 @@ module.exports = (env, argv) => {
     target: "web",
     resolve: {
       extensions: [".ts", ".tsx", ".js"],
+      modules: [
+        path.resolve(__dirname, "node_modules"),
+        path.resolve(__dirname, "./src"),
+      ],
     },
     optimization: {
       minimize: mode !== "development",
@@ -38,9 +42,11 @@ module.exports = (env, argv) => {
     },
     output: {
       filename: "[name].js",
+      publicPath: "/",
       path: path.resolve(__dirname, "dist"),
     },
     devServer: {
+      publicPath: "/",
       contentBase: path.join(__dirname, "dist"),
       compress: true,
       port: 9000,

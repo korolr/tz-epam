@@ -9,7 +9,7 @@ import {
   ARTICLES_REMOVE,
   ARTICLES_STATUS,
   articlesAction,
-} from "../actions/articlesActions"
+} from "actions/articlesActions"
 
 export type Article = {
   id: number
@@ -63,7 +63,6 @@ export function articlesReducer(
         ),
       }
     case ARTICLES_STATUS:
-      console.log(action.payload)
       return {
         ...state,
         last: action.payload,

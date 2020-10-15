@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from "react"
 import { Link } from "wouter"
 
-import { Article } from "../reducers/articles"
-import { Paginator } from "./Paginator"
+import { Article } from "reducers/articles"
+import { Paginator } from "components/Paginator"
 
 export interface Props {
   articles: Array<Article>
@@ -24,19 +24,24 @@ export const Articles: FunctionComponent<Props> = ({
     <>
       <div className="container">
         {articles.map((article) => (
-          <div
-            className={article.viewed ? "row article-card-gray" : "row"}
-            key={article.id}
-          >
+          <div className="row" key={article.id}>
             <div className="col-lg-2 col-xs-12">
               <Link href={"/article/" + article.id} key={article.id}>
-                <h2 className="article article-h2">{article.title}</h2>
+                <h2
+                  className={
+                    article.viewed
+                      ? "article article-h2 article-card-gray"
+                      : "article article-h2"
+                  }
+                >
+                  {article.title}
+                </h2>
               </Link>
 
               <img
                 src={article.image}
                 alt="article_img"
-                className="article article-img"
+                className="article article-img ss"
               />
             </div>
             <div className="col-lg-8 col-xs-10">
@@ -64,7 +69,7 @@ export const Articles: FunctionComponent<Props> = ({
           </div>
         ))}
       </div>
-      <Paginator status={id} />
+      <Paginator id={id} />
     </>
   )
 }

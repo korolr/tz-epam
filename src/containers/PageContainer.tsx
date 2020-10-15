@@ -8,22 +8,24 @@ import {
   fetchArticles,
   setArticlesViewed,
   setStatusArticles,
-} from "../actions/articlesActions"
-import { rootState } from "../reducers"
+  requestArticles,
+} from "actions/articlesActions"
+import { rootState } from "reducers"
 import {
   getVisibleArticles,
   getStatusArticles,
   getLast,
-} from "../selectors/articles"
-import { Article } from "../reducers/articles"
-import { Page } from "../components/Page"
-import { Error } from "../components/Error"
-import { ArticlesWrapper } from "../components/ArticlesHOC"
+} from "selectors/articles"
+import { Article } from "reducers/articles"
+import { Page } from "components/Page"
+import { Error } from "components/Error"
+import { ArticlesWrapper } from "hoc/ArticlesHOC"
 
 interface Props {
   toFetchArticles: (number?: number) => void
   toSetArticlesViewed: (id?: number) => void
   toSetStatusArticles: (id?: number) => void
+  toLoadArticle: () => void
 
   articles: Array<Article>
   status: string | null
@@ -35,6 +37,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
   toFetchArticles,
   toSetArticlesViewed,
   toSetStatusArticles,
+  toLoadArticle,
   status,
   last,
 }) => {
@@ -47,10 +50,11 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       articles: articles,
       fetchArticles: toFetchArticles,
       setArticlesViewed: toSetArticlesViewed,
+      loadArticle: toLoadArticle,
       setStatusArticles: toSetStatusArticles,
       last: last,
       status: status,
-      id: params.id,
+      id: params === null ? "" : params.id,
     },
     true
   )
@@ -69,6 +73,7 @@ const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
     toSetStatusArticles: (id: number) => dispatch(setStatusArticles(id)),
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
     toSetArticlesViewed: (id: number) => dispatch(setArticlesViewed(id)),
+    toLoadArticle: () => dispatch(requestArticles()),
   }
 }
 

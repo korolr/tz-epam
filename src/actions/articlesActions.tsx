@@ -1,5 +1,5 @@
 import { Action } from "redux"
-import { Article } from "../reducers/articles"
+import { Article } from "reducers/articles"
 
 export const ARTICLES_REQUEST = "ARTICLES_REQUEST"
 
@@ -69,16 +69,9 @@ export interface ARTICLES_VIEWED extends Action {
   payload: number
 }
 
-export const ARTICLES_FETCH_FAKE = "ARTICLES_FETCH_FAKE"
-
-export interface ARTICLES_FETCH_FAKE extends Action {
-  type: typeof ARTICLES_FETCH_FAKE
-}
-
 export type articlesAction =
   | ARTICLES_CLEAR
   | ARTICLES_FETCH
-  | ARTICLES_FETCH_FAKE
   | ARTICLES_REQUEST
   | ARTICLES_SUCCESS
   | ARTICLES_FAIL
@@ -128,8 +121,4 @@ export function removeArticle(id: number): ARTICLES_REMOVE {
 
 export function setStatusArticles(id: number): ARTICLES_STATUS {
   return { type: ARTICLES_STATUS, payload: id }
-}
-
-export function fetchFakePagArticles(number: number): ARTICLES_FETCH_FAKE {
-  return { type: ARTICLES_FETCH_FAKE }
 }
