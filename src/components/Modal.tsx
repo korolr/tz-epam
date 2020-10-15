@@ -10,12 +10,14 @@ const Modal = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h3 className="modal-title">Название</h3>
+              <h3 className="modal-title">Модальное окно</h3>
             </div>
             <div className="modal-body">
-              <p>Content</p>
-              <button onClick={() => handleModal()}>×</button>
-              <button onClick={() => handleModal(true)}>Done</button>
+              <p>Закрыть редактирование?</p>
+              <div className="modal-button">
+                <button onClick={() => handleModal()}>Продолжить</button>
+                <button onClick={() => handleModal(true)}>Закрыть</button>
+              </div>
             </div>
           </div>
         </div>
