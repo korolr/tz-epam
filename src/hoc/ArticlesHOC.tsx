@@ -3,6 +3,8 @@ import { Props as PropsA } from "components/Articles"
 import { Props as PropsS } from "components/SearchText"
 import { Props as PropsP } from "components/Page"
 import { Props as PropsE } from "components/Edit"
+import { ModalContext } from "context/modalContext"
+
 import { Link } from "wouter"
 
 interface Props extends PropsA, PropsS, PropsP, PropsE {}
@@ -16,6 +18,7 @@ export const ArticlesWrapper = <T extends Props>(
 ) => {
   const { articles, status, fetchArticles } = props
   const [editMode, setEditMode] = useState(false)
+  let { handleModal } = React.useContext(ModalContext)
 
   useEffect(() => {
     id !== null
