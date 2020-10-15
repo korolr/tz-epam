@@ -3,7 +3,6 @@ import {
   requestArticles,
   failArticles,
   ARTICLES_FETCH,
-  ARTICLES_FETCH_FAKE,
   successArticles,
 } from "actions/articlesActions"
 import { Article } from "reducers/articles"

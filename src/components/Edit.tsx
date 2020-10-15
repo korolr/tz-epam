@@ -12,6 +12,8 @@ export interface Props {
   fetchArticles: (number?: number) => void
   addArticle?: (data: Article) => void
   editArticle?: (id: number, data: Article) => void
+  loadArticle?: () => void
+
   status?: string | null
   text?: string | null
 }
@@ -20,6 +22,7 @@ export const Edit: FunctionComponent<Props> = ({
   articles,
   addArticle,
   editArticle,
+  loadArticle,
   text,
 }) => {
   const { register, handleSubmit, errors } = useForm()
@@ -75,6 +78,12 @@ export const Edit: FunctionComponent<Props> = ({
       setImageBase(article[0].image))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    return () => {
+      loadArticle()
+    }
+  }, [loadArticle])
 
   if (text === "add") {
     article.push({
