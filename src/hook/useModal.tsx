@@ -1,18 +1,20 @@
-import React from "react"
+import { useState } from "react"
 
 export default () => {
-  let [modal, setModal] = React.useState(false)
-  let [modalContent, setModalContent] = React.useState("I'm the Modal Content")
+  let [modal, setModal] = useState(false)
+  const [editMode, setEditMode] = useState(false)
 
-  let handleModal = (content: boolean | string = false) => {
+  let handleModal = (edit_toogle: boolean = false) => {
     document.body.style.overflow = "hidden"
     setModal(!modal)
     console.log("test")
-    if (typeof content === "string") {
+    if (modal) {
       document.body.style.overflow = "visible"
-      setModalContent(content)
+    }
+    if (edit_toogle) {
+      setEditMode(!editMode)
     }
   }
 
-  return { modal, handleModal, modalContent }
+  return { modal, handleModal, editMode, setEditMode }
 }

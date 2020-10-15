@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useContext } from "react"
 import ReactDOM from "react-dom"
 import { ModalContext } from "context/modalContext"
 
 const Modal = () => {
-  let { handleModal, modal } = React.useContext(ModalContext)
+  let { handleModal, modal } = useContext(ModalContext)
   if (modal) {
     return ReactDOM.createPortal(
       <div id="openModal" className="modal">
@@ -15,6 +15,7 @@ const Modal = () => {
             <div className="modal-body">
               <p>Content</p>
               <button onClick={() => handleModal()}>×</button>
+              <button onClick={() => handleModal(true)}>Done</button>
             </div>
           </div>
         </div>

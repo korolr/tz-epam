@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 import { Props as PropsA } from "components/Articles"
 import { Props as PropsS } from "components/SearchText"
 import { Props as PropsP } from "components/Page"
@@ -17,8 +17,8 @@ export const ArticlesWrapper = <T extends Props>(
   id: string | null = null
 ) => {
   const { articles, status, fetchArticles } = props
-  const [editMode, setEditMode] = useState(false)
-  let { handleModal } = React.useContext(ModalContext)
+
+  const { handleModal, editMode, setEditMode } = React.useContext(ModalContext)
 
   useEffect(() => {
     id !== null
@@ -40,7 +40,9 @@ export const ArticlesWrapper = <T extends Props>(
             <div className="col-xs-3">
               <button
                 className="edit-button"
-                onClick={(e) => setEditMode(!editMode)}
+                onClick={(e) =>
+                  editMode ? handleModal() : setEditMode(!editMode)
+                }
               >
                 Edit
               </button>
