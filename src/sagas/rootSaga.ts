@@ -1,8 +1,5 @@
 import { all } from "redux-saga/effects"
-import {
-  watchFetchArticles,
-  watchFakePagFetchArticles,
-} from "sagas/articlesSagas"
+import { watchFetchArticles } from "sagas/articlesSagas"
 export function* rootSaga() {
-  yield all([watchFetchArticles(), watchFakePagFetchArticles()])
+  yield all([watchFetchArticles()])
 }

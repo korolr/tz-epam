@@ -1,9 +1,11 @@
-import React, { FunctionComponent, useEffect, useState } from "react"
+import React, { FunctionComponent, useEffect, useContext } from "react"
 import { Props as PropsA } from "components/Articles"
 import { Props as PropsS } from "components/SearchText"
 import { Props as PropsP } from "components/Page"
 import { Props as PropsE } from "components/Edit"
-import { Link } from "wouter"
+import { ModalContext } from "context/modalContext"
+
+import { EditHeader } from "components/EditHeader"
 
 interface Props extends PropsA, PropsS, PropsP, PropsE {}
 
@@ -15,12 +17,11 @@ export const ArticlesWrapper = <T extends Props>(
   id: string | null = null
 ) => {
   const { articles, status, fetchArticles } = props
-  const [editMode, setEditMode] = useState(false)
+
+  const edit = useContext(ModalContext)
 
   useEffect(() => {
-    id !== null
-      ? fetchArticles(parseInt(id))
-      : !articles.length && fetchArticles() // if not array get from api
+    id !== null ? fetchArticles(parseInt(id)) : fetchArticles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
@@ -30,33 +31,14 @@ export const ArticlesWrapper = <T extends Props>(
   }
   return (
     <>
-      {button ? (
-        <div className="container">
-          <div className="row">
-            <div className="col-xs-9"></div>
-            <div className="col-xs-3">
-              <button
-                className="edit-button"
-                onClick={(e) => setEditMode(!editMode)}
-              >
-                Edit
-              </button>
-              {editMode && (
-                <Link href={"/edit/add"}>
-                  <button className="edit-button edit-button_add">Add</button>
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {button ? <EditHeader {...edit}></EditHeader> : null}
 
       {status ? (
         <ErrorComponent>{status}</ErrorComponent>
       ) : !articles.length ? (
         <ErrorComponent>Нет статей</ErrorComponent>
       ) : (
-        <WrappedComponent {...props} editMode={editMode} />
+        <WrappedComponent {...props} editMode={edit.editMode} />
       )}
     </>
   )

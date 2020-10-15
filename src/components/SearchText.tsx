@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 import Fuse from "fuse.js"
 import { Link } from "wouter"
 
@@ -8,6 +8,7 @@ export interface Props {
   articles: Array<Article>
   fetchArticles: (number?: number) => void
   removeArticle?: (number?: number) => void
+  loadArticle?: () => void
   status?: string | null
   text?: string
   editMode?: boolean
@@ -18,7 +19,14 @@ export const SearchText: FunctionComponent<Props> = ({
   text,
   editMode,
   removeArticle,
+  loadArticle,
 }) => {
+  useEffect(() => {
+    return () => {
+      loadArticle()
+    }
+  }, [loadArticle])
+
   const options = {
     keys: ["title", "priview", "text"],
   }

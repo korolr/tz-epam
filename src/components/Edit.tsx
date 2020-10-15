@@ -12,6 +12,8 @@ export interface Props {
   fetchArticles: (number?: number) => void
   addArticle?: (data: Article) => void
   editArticle?: (id: number, data: Article) => void
+  loadArticle?: () => void
+
   status?: string | null
   text?: string | null
 }
@@ -19,7 +21,9 @@ export interface Props {
 export const Edit: FunctionComponent<Props> = ({
   articles,
   addArticle,
+  fetchArticles,
   editArticle,
+  loadArticle,
   text,
 }) => {
   const { register, handleSubmit, errors } = useForm()
@@ -37,6 +41,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + article[0].id)
     } else {
       let id = parseInt(text)
@@ -48,6 +53,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + id)
     }
   }
@@ -76,9 +82,15 @@ export const Edit: FunctionComponent<Props> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    return () => {
+      loadArticle()
+    }
+  }, [loadArticle])
+
   if (text === "add") {
     article.push({
-      id: articles.length + 2,
+      id: articles.length + 1,
       title: "Title article",
       image: imageBase,
       date: startDate.toLocaleDateString("ru-RU"),

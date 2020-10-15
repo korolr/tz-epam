@@ -6,6 +6,7 @@ import { Article } from "reducers/articles"
 export interface Props {
   articles: Array<Article>
   fetchArticles: (number?: number) => void
+  loadArticle?: () => void
   status?: string | null
   text?: string
   id?: string
@@ -20,6 +21,7 @@ export const Page: FunctionComponent<Props> = ({
   id,
   setArticlesViewed,
   setStatusArticles,
+  loadArticle,
   editMode,
   last,
 }) => {
@@ -35,8 +37,15 @@ export const Page: FunctionComponent<Props> = ({
         setArticlesViewed(parseInt(id))
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [article, id, last])
+
+  useEffect(() => {
+    return () => {
+      loadArticle()
+    }
+  }, [loadArticle])
 
   if (article.length === 0) {
     return <div className="container">Not Found Article</div>

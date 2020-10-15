@@ -8,6 +8,7 @@ import {
   fetchArticles,
   setArticlesViewed,
   setStatusArticles,
+  requestArticles,
 } from "actions/articlesActions"
 import { rootState } from "reducers"
 import {
@@ -24,6 +25,7 @@ interface Props {
   toFetchArticles: (number?: number) => void
   toSetArticlesViewed: (id?: number) => void
   toSetStatusArticles: (id?: number) => void
+  toLoadArticle: () => void
 
   articles: Array<Article>
   status: string | null
@@ -35,6 +37,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
   toFetchArticles,
   toSetArticlesViewed,
   toSetStatusArticles,
+  toLoadArticle,
   status,
   last,
 }) => {
@@ -47,6 +50,7 @@ const ArticlesContainer: FunctionComponent<Props> = ({
       articles: articles,
       fetchArticles: toFetchArticles,
       setArticlesViewed: toSetArticlesViewed,
+      loadArticle: toLoadArticle,
       setStatusArticles: toSetStatusArticles,
       last: last,
       status: status,
@@ -69,6 +73,7 @@ const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
     toSetStatusArticles: (id: number) => dispatch(setStatusArticles(id)),
     toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
     toSetArticlesViewed: (id: number) => dispatch(setArticlesViewed(id)),
+    toLoadArticle: () => dispatch(requestArticles()),
   }
 }
 
