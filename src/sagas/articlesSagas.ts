@@ -18,7 +18,7 @@ export function* watchFetchArticles() {
 
     const articlesStore: Array<Article> = yield select(getArticlesFromStore)
 
-    const newGlobalStore = arrayArticles.map((i) => {
+    let newGlobalStore = arrayArticles.map((i) => {
       for (let j of articlesStore) {
         if (i.id === j.id) {
           return j
@@ -26,9 +26,11 @@ export function* watchFetchArticles() {
       }
       return i
     })
-
-    setArticles(newGlobalStore)
-
+    if (articlesStore.length > arrayArticles.length) {
+      setArticles(articlesStore)
+    } else {
+      setArticles(newGlobalStore)
+    }
     try {
       yield put(requestArticles())
       const articles: Array<Article> = yield call(() => {

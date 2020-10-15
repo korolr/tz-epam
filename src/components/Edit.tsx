@@ -21,6 +21,7 @@ export interface Props {
 export const Edit: FunctionComponent<Props> = ({
   articles,
   addArticle,
+  fetchArticles,
   editArticle,
   loadArticle,
   text,
@@ -40,6 +41,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + article[0].id)
     } else {
       let id = parseInt(text)
@@ -51,6 +53,7 @@ export const Edit: FunctionComponent<Props> = ({
         visible: true,
         viewed: false,
       })
+      fetchArticles()
       setLocation("/article/" + id)
     }
   }
@@ -87,7 +90,7 @@ export const Edit: FunctionComponent<Props> = ({
 
   if (text === "add") {
     article.push({
-      id: articles.length + 2,
+      id: articles.length + 1,
       title: "Title article",
       image: imageBase,
       date: startDate.toLocaleDateString("ru-RU"),
