@@ -263,7 +263,7 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
-  width: 80%;
+  width: 60%;
 }
 @media (min-width: 768px) {
   .modal-content {
