@@ -21,9 +21,7 @@ export const ArticlesWrapper = <T extends Props>(
   const edit = useContext(ModalContext)
 
   useEffect(() => {
-    id !== null
-      ? fetchArticles(parseInt(id))
-      : !articles.length && fetchArticles() // if not array get from api
+    id !== null ? fetchArticles(parseInt(id)) : fetchArticles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 

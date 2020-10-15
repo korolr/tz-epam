@@ -35,6 +35,7 @@ export const Page: FunctionComponent<Props> = ({
         setArticlesViewed(parseInt(id))
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [article, id, last])
 
