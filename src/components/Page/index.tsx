@@ -38,15 +38,11 @@ export const Page: FunctionComponent<Props> = ({
         setArticlesViewed(parseInt(id))
       }
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [article, id, last])
-
-  useEffect(() => {
     return () => {
       loadArticle()
     }
-  }, [loadArticle])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
 
   if (article.length === 0) {
     return <div className="container">Not Found Article</div>
