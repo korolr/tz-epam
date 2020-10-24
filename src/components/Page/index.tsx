@@ -2,6 +2,7 @@ import React, { FunctionComponent, useEffect } from "react"
 import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
+import styleArticle from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
@@ -56,22 +57,34 @@ export const Page: FunctionComponent<Props> = ({
       <div className="container">
         <div className="row">
           <div className="col-xs-10">
-            <h2 className="article article-h2">{article[0].title}</h2>
+            <h2
+              className={`${styleArticle["article"]} ${styleArticle["article-h2"]}`}
+            >
+              {article[0].title}
+            </h2>
           </div>
-          <div className="col-xs-2 article-date">{article[0].date}</div>
+          <div className={`col-xs-2 ${styleArticle["article-date"]}`}>
+            {article[0].date}
+          </div>
         </div>
         {editMode && (
           <Link href={"/edit/" + article[0].id}>
-            <button className="article article-edit-page">Edit</button>
+            <button
+              className={`${styleArticle["article"]} ${styleArticle["article-edit-page"]}`}
+            >
+              Edit
+            </button>
           </Link>
         )}
         <div className="row">
           <div className="col-xs-12">
-            <div className="article article-pre-page">
+            <div
+              className={`${styleArticle["article"]} ${styleArticle["article-pre-page"]}`}
+            >
               <img
                 src={article[0].image}
                 alt="article_img"
-                className="article article-img-post"
+                className={`${styleArticle["article"]} ${styleArticle["article-img-post"]}`}
               />
               <p>{article[0].text}</p>
             </div>

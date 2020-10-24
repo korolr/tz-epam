@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import ReactDOM from "react-dom"
 import { ModalContext } from "context/modalContext"
+import styleModal from "components/Modal/style.module.css"
 
 const Modal = () => {
   let { handleModal, modal } = useContext(ModalContext)
@@ -14,7 +15,7 @@ const Modal = () => {
     }
     const clickOutside = (e: MouseEvent) => {
       // @ts-ignore
-      if (e.target.className === "modal-dialog") {
+      if (e.target.className === styleModal["modal-dialog"]) {
         handleModal()
       }
     }
@@ -35,15 +36,15 @@ const Modal = () => {
 
   if (modal) {
     return ReactDOM.createPortal(
-      <div id="openModal" className="modal">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h3 className="modal-title">Модальное окно</h3>
+      <div id="openModal" className={`${styleModal["modal"]}`}>
+        <div className={`${styleModal["modal-dialog"]}`}>
+          <div className={`${styleModal["modal-content"]}`}>
+            <div className={`${styleModal["modal-header"]}`}>
+              <h3 className={`${styleModal["modal-title"]}`}>Модальное окно</h3>
             </div>
-            <div className="modal-body">
+            <div className={`${styleModal["modal-body"]}`}>
               <p>Закрыть редактирование?</p>
-              <div className="modal-button">
+              <div className={`${styleModal["modal-button"]}`}>
                 <button onClick={() => handleModal()}>Продолжить</button>
                 <button onClick={() => handleModal(true)}>Закрыть</button>
               </div>
