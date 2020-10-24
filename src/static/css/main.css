@@ -207,7 +207,7 @@ body {
     font-weight: bold;
 
     height: 41px;
-    width: 68px;
+    width: 95%;
   }
 
   .header-searchDate-button {
@@ -218,12 +218,9 @@ body {
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 772px) {
   .header-searchDate-button {
-    align-self: center;
-    flex-wrap: nowrap;
-    width: 30px;
-    height: 47px;
+    display: none;
   }
 }
 

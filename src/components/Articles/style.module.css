@@ -1,8 +1,79 @@
-.modal-contents {
-}
-@media (min-width: 768px) {
+.article {
 }
 
-.color {
-  color: red;
+.article-card-gray {
+  color: #a0a0a0;
+}
+.article-edit_remove {
+  margin-top: 5px;
+}
+
+.article-card {
+  margin-top: 30px;
+}
+
+.article-h2 {
+  margin: 0 auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.article-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 150px;
+  width: 150px;
+}
+
+.article-img-post {
+  float: left;
+  height: 150px;
+  width: 150px;
+}
+
+.article-img-edit {
+  height: 150px;
+  width: 150px;
+}
+
+.article-pre {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 18pt;
+}
+
+.article-pre-page {
+  font-size: 18pt;
+}
+
+.article-date {
+  text-align: center;
+
+  font-weight: bold;
+  font-size: 24pt;
+}
+
+.article-edit-page {
+  float: right;
+  height: 40px;
+  width: 160px;
+}
+
+.article-edit {
+  width: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .article-edit {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .article-date {
+    font-size: 15pt;
+  }
 }
