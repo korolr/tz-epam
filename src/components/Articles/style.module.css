@@ -66,12 +66,6 @@
   width: 100%;
 }
 
-@media screen and (min-width: 1200px) {
-  .article-edit {
-    margin-left: 15px;
-  }
-}
-
 @media screen and (max-width: 992px) {
   .article-date {
     font-size: 15pt;
