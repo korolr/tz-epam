@@ -26,7 +26,12 @@ module.exports = (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: "ts-loader",
+          use: {
+            loader: "ts-loader",
+            options: {
+              configFile: "tsconfig.json",
+            },
+          },
           exclude: "/node_modules/",
         },
         {
@@ -35,7 +40,12 @@ module.exports = (env, argv) => {
             {
               loader: MiniCssExtractPlugin.loader,
             },
-            "css-loader",
+            {
+              loader: "css-loader",
+              options: {
+                modules: { auto: true },
+              },
+            },
           ],
         },
       ],

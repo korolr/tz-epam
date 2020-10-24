@@ -3,6 +3,7 @@ import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
 import { Paginator } from "components/Paginator"
+import style from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
