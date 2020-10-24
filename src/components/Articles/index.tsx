@@ -3,7 +3,7 @@ import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
 import { Paginator } from "components/Paginator"
-import articleStyle from "components/Articles/style.module.css"
+import styleArticle from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
@@ -31,8 +31,8 @@ export const Articles: FunctionComponent<Props> = ({
                 <h2
                   className={
                     article.viewed
-                      ? `${articleStyle["article"]} ${articleStyle["article-h2"]} ${articleStyle["article-card-gray"]}`
-                      : `${articleStyle["article"]} ${articleStyle["article-h2"]}`
+                      ? `${styleArticle["article"]} ${styleArticle["article-h2"]} ${styleArticle["article-card-gray"]}`
+                      : `${styleArticle["article"]} ${styleArticle["article-h2"]}`
                   }
                 >
                   {article.title}
@@ -42,13 +42,13 @@ export const Articles: FunctionComponent<Props> = ({
               <img
                 src={article.image}
                 alt="article_img"
-                className={`${articleStyle["article"]} ${articleStyle["article-img"]} ss`}
+                className={`${styleArticle["article"]} ${styleArticle["article-img"]} ss`}
               />
             </div>
             <div className="col-lg-8 col-xs-10">
               <Link href={"/article/" + article.id}>
                 <div
-                  className={`${articleStyle["article"]} ${articleStyle["article-pre"]}`}
+                  className={`${styleArticle["article"]} ${styleArticle["article-pre"]}`}
                 >
                   {article.priview}
                 </div>
@@ -57,14 +57,14 @@ export const Articles: FunctionComponent<Props> = ({
 
             <div className="col-lg-2 col-xs-2">
               <div
-                className={`${articleStyle["article"]} ${articleStyle["article-date"]}`}
+                className={`${styleArticle["article"]} ${styleArticle["article-date"]}`}
               >
                 {article.date}
               </div>
               {editMode && (
                 <Link href={"/edit/" + article.id}>
                   <button
-                    className={`${articleStyle["article"]} ${articleStyle["article-edit"]}`}
+                    className={`${styleArticle["article"]} ${styleArticle["article-edit"]}`}
                   >
                     Edit
                   </button>
@@ -72,7 +72,7 @@ export const Articles: FunctionComponent<Props> = ({
               )}
               {editMode && (
                 <button
-                  className={`${articleStyle["article"]} ${articleStyle["article-edit"]} ${articleStyle["article-edit_remove"]}`}
+                  className={`${styleArticle["article"]} ${styleArticle["article-edit"]} ${styleArticle["article-edit_remove"]}`}
                   onClick={() => removeArticle(article.id)}
                 >
                   Remove

@@ -6,7 +6,8 @@ import DatePicker from "react-datepicker"
 import { Article } from "reducers/articles"
 import { Error } from "components/Error"
 import { toBase64 } from "../../util"
-import style from "components/Edit/style.module.css"
+import styleEdit from "components/Edit/style.module.css"
+import styleArticle from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
@@ -110,7 +111,10 @@ export const Edit: FunctionComponent<Props> = ({
   return (
     <div className="container">
       <div className="row">
-        <form onSubmit={handleSubmit(onSubmit)} className="edit-input">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={`${styleEdit["edit-input"]}`}
+        >
           <div>
             <b>Title:</b>
             <br />
@@ -118,7 +122,7 @@ export const Edit: FunctionComponent<Props> = ({
               name="title"
               defaultValue={article[0].title}
               ref={register({ required: true })}
-              className="edit-input"
+              className={`${styleEdit["edit-input"]}`}
             />
           </div>
           {errors.title && <span>This field is required</span>}
@@ -142,12 +146,12 @@ export const Edit: FunctionComponent<Props> = ({
             <img
               src={imageBase}
               alt="article_img"
-              className="article-img-edit"
+              className={`${styleArticle["article-img-edit"]}`}
             />
             <input
               name="image-select"
               type="file"
-              className="edit-file"
+              className={`${styleEdit["edit-file"]}`}
               onChange={handleChange}
             />
           </p>
@@ -159,7 +163,7 @@ export const Edit: FunctionComponent<Props> = ({
               name="priview"
               defaultValue={article[0].priview}
               ref={register({ required: true })}
-              className="edit-input edit-input_area"
+              className={`${styleEdit["edit-input"]} ${styleEdit["edit-input_area"]}`}
             />
             {errors.priview && <span>This field is required</span>}
           </div>
@@ -171,7 +175,7 @@ export const Edit: FunctionComponent<Props> = ({
               name="text"
               defaultValue={article[0].text}
               ref={register({ required: true })}
-              className="edit-input edit-input_area"
+              className={`${styleEdit["edit-input"]} ${styleEdit["edit-input_area"]}`}
             />
             {errors.text && <span>This field is required</span>}
           </div>

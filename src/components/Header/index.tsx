@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useState, forwardRef } from "react"
 import { Link, useLocation } from "wouter"
 import DatePicker from "react-datepicker"
+import styleHeader from "components/Header/style.module.css"
 
 export interface PropsInput {
   value: string
@@ -17,7 +18,10 @@ export const Header: FunctionComponent = () => {
     ref: React.RefObject<HTMLButtonElement>
   ) => {
     return (
-      <button className="header-searchDate-button" onClick={props.onClick}>
+      <button
+        className={`${styleHeader["header-searchDate-button"]}`}
+        onClick={props.onClick}
+      >
         Date
       </button>
     )
@@ -50,27 +54,27 @@ export const Header: FunctionComponent = () => {
   return (
     <>
       <div className="container">
-        <div className="row header">
+        <div className={`row ${styleHeader["header"]}`}>
           <div className="col-xs-4">
             <input
               type="text"
               name="Search"
-              className="header-searchText"
+              className={`${styleHeader["header-searchText"]}`}
               onChange={(e) => setSearchText(e.target.value)}
               onKeyPress={keyPressSearchText}
             />
           </div>
-          <div className="col-xs-4 header-name">
+          <div className={`col-xs-4 ${styleHeader["header-name"]}`}>
             <Link href="/">
               <p>Blog</p>
             </Link>
           </div>
           <div className="col-xs-1"></div>
-          <div className="col-xs-3 header-searchDate">
+          <div className={`col-xs-3 ${styleHeader["header-searchDate"]}`}>
             <input
               type="text"
               name="Search"
-              className="header-searchDate-input"
+              className={`${styleHeader["header-searchDate-input"]}`}
               value={startDate.toLocaleDateString("ru-RU")}
               onChange={changeDate}
               onKeyPress={keyPressSearchDate}
