@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
@@ -15,7 +15,7 @@ export interface Props {
   editMode?: boolean
 }
 
-export const Articles: FunctionComponent<Props> = ({
+export const Articles: React.FunctionComponent<Props> = ({
   articles,
   id,
   removeArticle,
