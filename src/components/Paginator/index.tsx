@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import { Link } from "wouter"
 
 import { arrayArticles } from "api"
@@ -8,7 +8,7 @@ export interface Props {
   id: string
 }
 
-export const Paginator: FunctionComponent<Props> = ({ id }) => {
+export const Paginator: React.FunctionComponent<Props> = ({ id }) => {
   const intId = parseInt(id)
   return (
     <div className={`container ${stylePaginator["paginator"]}`}>
