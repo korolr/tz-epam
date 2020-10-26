@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import useModal from "hook/useModal"
 import Modal from "components/modal"
 
@@ -12,7 +12,7 @@ type Context = {
 let ModalContext = React.createContext<Context>(null)
 let { Provider } = ModalContext
 
-const ModalProvider: FunctionComponent = (props) => {
+const ModalProvider: React.FunctionComponent = (props) => {
   const { modal, handleModal, editMode, setEditMode } = useModal()
   return (
     <Provider value={{ modal, handleModal, editMode, setEditMode }}>
