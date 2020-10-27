@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useContext } from "react"
+import * as React from "react"
 import { Props as PropsA } from "components/Articles"
 import { Props as PropsS } from "components/SearchText"
 import { Props as PropsP } from "components/Page"
@@ -7,20 +7,20 @@ import { ModalContext } from "context/modalContext"
 
 import { EditHeader } from "components/EditHeader"
 
-interface Props extends PropsA, PropsS, PropsP, PropsE {}
+export interface Props extends PropsA, PropsS, PropsP, PropsE {}
 
 export const ArticlesWrapper = <T extends Props>(
-  WrappedComponent: FunctionComponent<T>,
-  ErrorComponent: FunctionComponent,
+  WrappedComponent: React.FunctionComponent<T>,
+  ErrorComponent: React.FunctionComponent,
   props: T,
   button: boolean = false,
   id: string | null = null
 ) => {
   const { articles, status, fetchArticles } = props
 
-  const edit = useContext(ModalContext)
+  const edit = React.useContext(ModalContext)
 
-  useEffect(() => {
+  React.useEffect(() => {
     id !== null ? fetchArticles(parseInt(id)) : fetchArticles()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])

@@ -6,7 +6,7 @@
     "test": "jest",
     "build": "webpack --config webpack.config.js --env production",
     "start:dev": "node_modules/.bin/webpack-dev-server",
-    "precommit": "lint-staged --no-verify",
+    "precommit": "lint-staged",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "npm run prettier:base --list-different \"src/**/*.{ts,tsx}\"",
     "prettier:write": "npm run prettier:base --write \"src/**/*.{ts,tsx}\""
