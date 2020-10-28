@@ -1,12 +1,14 @@
 import * as React from "react"
 
 import { ArticlesWrapper, Props } from "./ArticlesHOC"
-import { ModalProvider } from "context/modalContext"
+import * as ModalContext from "context/modalContext"
 
 import { Articles } from "components/Articles"
 import { Error } from "components/Error"
 import { arrayArticles } from "../api"
 import { shallow } from "enzyme"
+import staticLocationHook from "wouter/static-location"
+import { Router } from "wouter"
 
 describe("Modal Context", () => {
   it("how many data", () => {
@@ -17,10 +19,21 @@ describe("Modal Context", () => {
       removeArticle: (n) => null,
       id: null,
     }
+    // @ts-ignore
+    jest.spyOn(ModalContext, "useModalContext").mockImplementation(() => {
+      return {
+        modal: false,
+        handleModal: (a: boolean) => {},
+        editMode: false,
+        setEditMode: () => {},
+      }
+    })
     const hoc = shallow(
-      <ModalProvider>
-        {ArticlesWrapper(Articles, Error, props, true, null)}
-      </ModalProvider>
+      <Router hook={staticLocationHook("/")}>
+        <ModalContext.ModalProvider>
+          {ArticlesWrapper(Articles, Error, props, true, null)}
+        </ModalContext.ModalProvider>
+      </Router>
     )
     console.log(hoc.html())
     expect(hoc.find("ErrorComponent")).toHaveLength(0)

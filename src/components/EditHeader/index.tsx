@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import { Link } from "wouter"
 import styleEditHeader from "components/EditHeader/style.module.css"
 
@@ -8,7 +8,7 @@ export interface Props {
   setEditMode: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const EditHeader: FunctionComponent<Props> = ({
+export const EditHeader: React.FunctionComponent<Props> = ({
   editMode,
   handleModal,
   setEditMode,

@@ -12,6 +12,8 @@ type Context = {
 let ModalContext = React.createContext<Context>(null)
 let { Provider } = ModalContext
 
+const useModalContext = () => React.useContext(ModalContext)
+
 const ModalProvider: React.FunctionComponent = (props) => {
   const { modal, handleModal, editMode, setEditMode } = useModal()
   return (
@@ -22,4 +24,4 @@ const ModalProvider: React.FunctionComponent = (props) => {
   )
 }
 
-export { ModalContext, ModalProvider }
+export { ModalContext, ModalProvider, useModalContext }
