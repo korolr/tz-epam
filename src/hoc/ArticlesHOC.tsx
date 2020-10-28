@@ -20,6 +20,11 @@ export const ArticlesWrapper = <T extends Props>(
 
   const edit = useModalContext()
 
+  React.useEffect(() => {
+    id !== null ? fetchArticles(parseInt(id)) : fetchArticles()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id])
+
   // проверка на плохой запрос в роутере
   if (id !== null && Number.isNaN(parseInt(id))) {
     return <ErrorComponent>Bad Request</ErrorComponent>
