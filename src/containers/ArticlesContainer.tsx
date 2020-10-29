@@ -1,34 +1,21 @@
-import { FunctionComponent } from "react"
-import { connect } from "react-redux"
-import { Dispatch } from "redux"
 import { useRoute } from "wouter"
+import { useSelector, useDispatch } from "react-redux"
 
-import {
-  articlesAction,
-  fetchArticles,
-  removeArticle,
-} from "actions/articlesActions"
-import { rootState } from "reducers"
+import { fetchArticles, removeArticle } from "actions/articlesActions"
 import { getVisibleArticles, getStatusArticles } from "selectors/articles"
-import { Article } from "reducers/articles"
 import { Articles } from "components/Articles"
 import { Error } from "components/Error"
 import { ArticlesWrapper } from "hoc/ArticlesHOC"
 
-interface Props {
-  toFetchArticles: (number?: number) => void
-  toRemoveArticle: (number?: number) => void
-  articles: Array<Article>
-  status: string | null
-}
-
-const ArticlesContainer: FunctionComponent<Props> = ({
-  articles,
-  toFetchArticles,
-  toRemoveArticle,
-  status,
-}) => {
+const ArticlesContainer = () => {
   let [, params] = useRoute("/pag/:id")
+  const dispatch = useDispatch()
+
+  const articles = useSelector(getVisibleArticles)
+  const status = useSelector(getStatusArticles)
+
+  const toFetchArticles = (number: number) => dispatch(fetchArticles(number))
+  const toRemoveArticle = (number: number) => dispatch(removeArticle(number))
 
   return ArticlesWrapper(
     Articles,
@@ -46,18 +33,4 @@ const ArticlesContainer: FunctionComponent<Props> = ({
   )
 }
 
-const mapStateToProps = (store: rootState) => {
-  return {
-    articles: getVisibleArticles(store),
-    status: getStatusArticles(store),
-  }
-}
-
-const mapDispatchToProps = (dispatch: Dispatch<articlesAction>) => {
-  return {
-    toFetchArticles: (number: number) => dispatch(fetchArticles(number)),
-    toRemoveArticle: (number: number) => dispatch(removeArticle(number)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ArticlesContainer)
+export default ArticlesContainer

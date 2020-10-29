@@ -1,0 +1,111 @@
+.header {
+  background-color: #08e8de;
+  height: 50px !important;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+.header-searchText {
+  font-size: 10pt;
+  font-weight: bold;
+  height: 41px;
+  width: 170px;
+}
+
+.header-name p {
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 28pt;
+  text-align: center;
+}
+
+.header-searchDate {
+}
+
+.header-searchDate-input {
+  font-size: 10pt;
+  font-weight: bold;
+
+  height: 41px;
+  width: 170px;
+}
+
+.header-searchDate-button {
+  align-self: center;
+  flex-wrap: nowrap;
+  width: 47px;
+  height: 47px;
+}
+
+@media screen and (min-width: 1200px) {
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 170px;
+  }
+
+  .header-searchDate-input {
+    margin-left: 50px;
+  }
+
+  .header-searchDate-button {
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 47px;
+    height: 47px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header-searchDate-input {
+    margin-left: 10px;
+  }
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 100px;
+  }
+
+  .header-searchDate-input {
+    font-size: 10pt;
+    font-weight: bold;
+
+    height: 41px;
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 772px) {
+  .header-searchDate-input {
+    margin-left: 0px;
+  }
+  .header-searchText {
+    font-size: 10pt;
+    font-weight: bold;
+    height: 41px;
+    width: 68px;
+  }
+
+  .header-searchDate-input {
+    font-size: 10pt;
+    font-weight: bold;
+
+    height: 41px;
+    width: 95%;
+  }
+
+  .header-searchDate-button {
+    align-self: center;
+    flex-wrap: nowrap;
+    width: 47px;
+    height: 47px;
+  }
+}
+
+@media screen and (max-width: 772px) {
+  .header-searchDate-button {
+    display: none;
+  }
+}

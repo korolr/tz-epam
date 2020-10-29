@@ -25,3 +25,6 @@ export const toBase64 = (file: Blob) =>
     reader.onload = () => resolve(reader.result)
     reader.onerror = (error) => reject(error)
   })
+
+export const compose = <R>(fn1: (a: R) => R, ...fns: Array<(a: R) => R>) =>
+  fns.reduce((prevFn, nextFn) => (value) => prevFn(nextFn(value)), fn1)
