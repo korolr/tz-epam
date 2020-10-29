@@ -28,7 +28,7 @@ export interface StoreStateArticles {
   status: string | null
 }
 
-const initialState: StoreStateArticles = {
+export const initialState: StoreStateArticles = {
   data: [],
   last: null,
   status: "Loading",

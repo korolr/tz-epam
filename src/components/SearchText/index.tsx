@@ -3,6 +3,7 @@ import Fuse from "fuse.js"
 import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
+import styleArticle from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
@@ -54,8 +55,8 @@ export const SearchText: FunctionComponent<Props> = ({
                 <h2
                   className={
                     article.item.viewed
-                      ? "article article-h2 article-card-gray"
-                      : "article article-h2"
+                      ? `${styleArticle["article"]} ${styleArticle["article-h2"]} ${styleArticle["article-card-gray"]}`
+                      : `${styleArticle["article"]} ${styleArticle["article-h2"]}`
                   }
                 >
                   {article.item.title}
@@ -65,26 +66,36 @@ export const SearchText: FunctionComponent<Props> = ({
               <img
                 src={article.item.image}
                 alt="article_img"
-                className="article article-img col-lg-12"
+                className={`${styleArticle["article"]} ${styleArticle["article-img"]} col-lg-12`}
               />
             </div>
             <div className="col-lg-8 col-xs-10">
               <Link href={"/article/" + article.item.id} key={article.item.id}>
-                <div className="article article-pre">
+                <div
+                  className={`${styleArticle["article"]} ${styleArticle["article-pre"]}`}
+                >
                   {article.item.priview}
                 </div>
               </Link>
             </div>
             <div className="col-lg-2 col-xs-2">
-              <div className="article article-date">{article.item.date}</div>
+              <div
+                className={`${styleArticle["article"]} ${styleArticle["article-date"]}`}
+              >
+                {article.item.date}
+              </div>
               {editMode && (
                 <Link href={"/edit/" + article.item.id}>
-                  <button className="article article-edit">Edit</button>
+                  <button
+                    className={`${styleArticle["article"]} ${styleArticle["article-edit"]}`}
+                  >
+                    Edit
+                  </button>
                 </Link>
               )}
               {editMode && (
                 <button
-                  className="article article-edit article-edit_remove"
+                  className={`${styleArticle["article"]} ${styleArticle["article-edit"]} ${styleArticle["article-edit_remove"]}`}
                   onClick={() => removeArticle(article.item.id)}
                 >
                   Remove

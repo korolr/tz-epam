@@ -1,16 +1,18 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import { Link } from "wouter"
+
 import { arrayArticles } from "api"
+import stylePaginator from "components/Paginator/style.module.css"
 
 export interface Props {
   id: string
 }
 
-export const Paginator: FunctionComponent<Props> = ({ id }) => {
+export const Paginator: React.FunctionComponent<Props> = ({ id }) => {
   const intId = parseInt(id)
   return (
-    <div className="container paginator">
-      <div className="row paginator-cell">
+    <div className={`container ${stylePaginator["paginator"]}`}>
+      <div className={`row ${stylePaginator["paginator-cell"]}`}>
         <Link href={"/pag/" + (id === null ? 1 : intId > 1 ? intId - 1 : id)}>
           <button>Left</button>
         </Link>
@@ -20,7 +22,13 @@ export const Paginator: FunctionComponent<Props> = ({ id }) => {
           .map((number) => {
             return (
               <Link href={"/pag/" + number} key={number}>
-                <button className={intId === number ? "paginator-active" : ""}>
+                <button
+                  className={
+                    intId === number
+                      ? `${stylePaginator["paginator-active"]}`
+                      : ""
+                  }
+                >
                   {number}
                 </button>
               </Link>

@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from "react"
+import * as React from "react"
 import { Link } from "wouter"
 
 import { Article } from "reducers/articles"
 import { Paginator } from "components/Paginator"
-import style from "components/Articles/style.module.css"
+import styleArticle from "components/Articles/style.module.css"
 
 export interface Props {
   articles: Array<Article>
@@ -15,7 +15,7 @@ export interface Props {
   editMode?: boolean
 }
 
-export const Articles: FunctionComponent<Props> = ({
+export const Articles: React.FunctionComponent<Props> = ({
   articles,
   id,
   removeArticle,
@@ -31,8 +31,8 @@ export const Articles: FunctionComponent<Props> = ({
                 <h2
                   className={
                     article.viewed
-                      ? "article article-h2 article-card-gray"
-                      : "article article-h2"
+                      ? `${styleArticle["article"]} ${styleArticle["article-h2"]} ${styleArticle["article-card-gray"]}`
+                      : `${styleArticle["article"]} ${styleArticle["article-h2"]}`
                   }
                 >
                   {article.title}
@@ -42,25 +42,37 @@ export const Articles: FunctionComponent<Props> = ({
               <img
                 src={article.image}
                 alt="article_img"
-                className="article article-img ss"
+                className={`${styleArticle["article"]} ${styleArticle["article-img"]} ss`}
               />
             </div>
             <div className="col-lg-8 col-xs-10">
               <Link href={"/article/" + article.id}>
-                <div className="article article-pre">{article.priview}</div>
+                <div
+                  className={`${styleArticle["article"]} ${styleArticle["article-pre"]}`}
+                >
+                  {article.priview}
+                </div>
               </Link>
             </div>
 
             <div className="col-lg-2 col-xs-2">
-              <div className="article article-date">{article.date}</div>
+              <div
+                className={`${styleArticle["article"]} ${styleArticle["article-date"]}`}
+              >
+                {article.date}
+              </div>
               {editMode && (
                 <Link href={"/edit/" + article.id}>
-                  <button className="article article-edit">Edit</button>
+                  <button
+                    className={`${styleArticle["article"]} ${styleArticle["article-edit"]}`}
+                  >
+                    Edit
+                  </button>
                 </Link>
               )}
               {editMode && (
                 <button
-                  className="article article-edit article-edit_remove"
+                  className={`${styleArticle["article"]} ${styleArticle["article-edit"]} ${styleArticle["article-edit_remove"]}`}
                   onClick={() => removeArticle(article.id)}
                 >
                   Remove
